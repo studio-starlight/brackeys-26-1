@@ -10,30 +10,53 @@ const BASE_SPEED : float = 80
 const MAX_HEALTH : int = 30
 var health : int 
 var disabled : bool = false
+var is_knockback : bool = false
 var can_attack : bool = true
 var facing_right : bool = true
 var move_direction : Vector2
-var base_damage : float
+var base_damage : float = 5.0
 var attack_time : float = 0.5
+var knockback : Vector2
+var knockback_time : float
 @onready var attack_timer: Timer = $AttackTimer
+@onready var knockback_timer: Timer = $KnockbackTimer
+@onready var hit_animator: AnimationPlayer = $HitAnimator
+@onready var pivot: Node2D = $Pivot
 
 func get_health() -> int:
 	return health
 
 func take_damage(damage_amount : int) -> void:
 	health -= damage_amount
+	EventBus.emit_signal("shake_camera", 8, 3)
+	
+	if health <= 0:
+		_die()
+	else:
+		hit_animator.call_deferred("play", "hit")
+
+func apply_knockback(direction : Vector2, force: float, duraction : float) -> void:
+	knockback = direction * force
+	knockback_time = duraction
+	knockback_timer.start(knockback_time)
+	is_knockback = true
 
 func _ready() -> void:
-	#connect signals
+	# connect signals
 	attack_timer.connect("timeout", _on_attack_finished)
+	knockback_timer.connect("timeout", _on_knockback_finished)
 	health = MAX_HEALTH
 
 func _physics_process(_delta: float) -> void:
 	if disabled:
 		return
-	_handle_movement()
+	if is_knockback:
+		_handle_knockback()
+	else:
+		_handle_movement()
 	_handle_face_direction()
 	_handle_attack()
+	
 
 func _handle_movement() -> void:
 	move_direction = Input.get_vector("left", "right", "up", "down")
@@ -51,12 +74,18 @@ func _handle_attack() -> void:
 	if Input.is_action_pressed("attack") && can_attack:
 		_attack()
 
+func _handle_knockback() -> void:
+	velocity = knockback
+	move_and_slide()
+
 func _attack() -> void:
-	var new_attack = Attack.new_attack(global_position, base_damage)
+	var new_attack = Attack.new_attack(pivot.global_position, base_damage)
 	can_attack = false
 	attack_timer.start(attack_time)
 	get_parent().add_child(new_attack)
-	
+
+func _die() -> void:
+	get_tree().call_deferred("reload_current_scene")
 
 func _calculate_speed() -> float:
 	var speed : float = BASE_SPEED
@@ -64,3 +93,7 @@ func _calculate_speed() -> float:
 
 func _on_attack_finished() -> void:
 	can_attack = true
+
+func _on_knockback_finished() -> void:
+	is_knockback = false
+	knockback = Vector2.ZERO

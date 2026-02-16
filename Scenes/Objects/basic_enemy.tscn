@@ -1,0 +1,183 @@
+[gd_scene format=3 uid="uid://bixy7vhwh12a1"]
+
+[ext_resource type="Script" uid="uid://1odx7l7jfai7" path="res://Scripts/Objects/enemy.gd" id="1_hn8a1"]
+[ext_resource type="Resource" uid="uid://ke6bxpf02nq4" path="res://Resources/Stats/basic_enemy.tres" id="2_y5xve"]
+[ext_resource type="Texture2D" uid="uid://cn63xquckvv33" path="res://icon.svg" id="3_glhuy"]
+[ext_resource type="PackedScene" uid="uid://bwyviu5nv8hh" path="res://Scenes/Components/take_damage_box.tscn" id="4_w3cqj"]
+[ext_resource type="Script" uid="uid://bu5qonx66myey" path="res://Scripts/Components/deal_damage_box.gd" id="5_1go4f"]
+[ext_resource type="Texture2D" uid="uid://b75x76v0m3vdv" path="res://Graphics/Effects/Circle.png" id="6_8xx4p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ink2j"]
+size = Vector2(16, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ypxt"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm7cc"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_osb2a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(18.892157, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_v3p23"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(18.892002, 18.892002, 18.892002, 1), Color(18.892157, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333, 0.06666667, 0.10000001, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.3490658503988659, 0.3490658503988659, -0.08726646259971647, 0.08726646259971647, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0g2vl"]
+_data = {
+&"RESET": SubResource("Animation_osb2a"),
+&"hit": SubResource("Animation_v3p23")
+}
+
+[sub_resource type="Curve" id="Curve_y18d7"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6cxka"]
+curve = SubResource("Curve_y18d7")
+
+[sub_resource type="Curve" id="Curve_6ucen"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.33333334, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h0663"]
+curve = SubResource("Curve_6ucen")
+
+[sub_resource type="Curve" id="Curve_7sqod"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_512dv"]
+curve = SubResource("Curve_7sqod")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bxl2c"]
+particle_flag_disable_z = true
+spread = 20.0
+initial_velocity_min = 67.119995
+initial_velocity_max = 87.259995
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 86.97998
+angular_velocity_curve = SubResource("CurveTexture_6cxka")
+radial_velocity_curve = SubResource("CurveTexture_h0663")
+scale_curve = SubResource("CurveTexture_512dv")
+
+[node name="BasicEnemy" type="CharacterBody2D" unique_id=1254965848]
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("1_hn8a1")
+enemy_stats = ExtResource("2_y5xve")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1578816072]
+modulate = Color(18.892157, 0, 0, 1)
+scale = Vector2(0.12499999, 0.125)
+texture = ExtResource("3_glhuy")
+offset = Vector2(0, -64)
+
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=1938127680]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_ink2j")
+
+[node name="TakeDamageBox" parent="." unique_id=278541483 node_paths=PackedStringArray("parent") instance=ExtResource("4_w3cqj")]
+collision_layer = 128
+parent = NodePath("..")
+
+[node name="Shape" type="CollisionShape2D" parent="TakeDamageBox" unique_id=1274667830]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_8ypxt")
+
+[node name="DealDamageBox" type="Area2D" parent="." unique_id=1742678038]
+collision_layer = 64
+collision_mask = 32
+script = ExtResource("5_1go4f")
+metadata/_custom_type_script = "uid://bu5qonx66myey"
+
+[node name="Shape" type="CollisionShape2D" parent="DealDamageBox" unique_id=1527766981]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_vm7cc")
+
+[node name="KnockbackTimer" type="Timer" parent="." unique_id=799538252]
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=18915734]
+libraries/ = SubResource("AnimationLibrary_0g2vl")
+
+[node name="HitParticles" type="GPUParticles2D" parent="." unique_id=528796765]
+emitting = false
+amount = 7
+texture = ExtResource("6_8xx4p")
+lifetime = 0.77
+one_shot = true
+explosiveness = 0.93
+visibility_rect = Rect2(-75, -75, 150, 150)
+process_material = SubResource("ParticleProcessMaterial_bxl2c")

@@ -1,20 +1,222 @@
-[gd_scene format=3 uid="uid://cx045meyetxtm"]
+[gd_scene format=4 uid="uid://cx045meyetxtm"]
 
 [ext_resource type="Script" uid="uid://b6te07ap85p7c" path="res://Scripts/Systems/cutscene_manager.gd" id="1_72uep"]
 [ext_resource type="PackedScene" uid="uid://cogo3u23uwhnl" path="res://Scenes/Objects/player.tscn" id="1_ds3o4"]
+[ext_resource type="Script" uid="uid://dwiwxnmi1nlru" path="res://Scripts/Systems/game.gd" id="1_yla1s"]
 [ext_resource type="Script" uid="uid://tg7bb07th5j" path="res://Scripts/Systems/wave_manager.gd" id="2_b2ers"]
+[ext_resource type="Script" uid="uid://g1px1q8n7td4" path="res://Scripts/Objects/camera.gd" id="3_7l4mf"]
+[ext_resource type="Script" uid="uid://bhjrhyqi4piw7" path="res://Resources/Cutscene/CutsceneData.gd" id="3_c11q5"]
+[ext_resource type="Texture2D" uid="uid://cn63xquckvv33" path="res://icon.svg" id="3_i10s3"]
+[ext_resource type="Script" uid="uid://vd74rdt82yon" path="res://Resources/Cutscene/Cutscene.gd" id="3_q2try"]
+[ext_resource type="Script" uid="uid://bnkkpuj71oley" path="res://Resources/Wave Data/WaveData.gd" id="4_o86a8"]
+[ext_resource type="PackedScene" uid="uid://bixy7vhwh12a1" path="res://Scenes/Objects/basic_enemy.tscn" id="5_ce5c8"]
+[ext_resource type="Script" uid="uid://dg44yqyt36m2x" path="res://Resources/Cutscene/CutsceneTextData.gd" id="7_xdwyp"]
+[ext_resource type="Script" uid="uid://ddkoy6vp3mmqo" path="res://Scripts/Systems/hud.gd" id="10_q2try"]
+
+[sub_resource type="Resource" id="Resource_ahqd5"]
+script = ExtResource("7_xdwyp")
+text = "Hey, this is the first cutscene!"
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_dw2ve"]
+script = ExtResource("7_xdwyp")
+text = "I'll now start the first wave of enemies!"
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_8u2a7"]
+script = ExtResource("3_q2try")
+cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_ahqd5"), SubResource("Resource_dw2ve")])
+metadata/_custom_type_script = "uid://vd74rdt82yon"
+
+[sub_resource type="Resource" id="Resource_xdwyp"]
+script = ExtResource("7_xdwyp")
+text = "Wow, you cleared the wave!"
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_e8oij"]
+script = ExtResource("7_xdwyp")
+text = "Onto the next Wave!"
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_gqwak"]
+script = ExtResource("3_q2try")
+cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_xdwyp"), SubResource("Resource_e8oij")])
+metadata/_custom_type_script = "uid://vd74rdt82yon"
+
+[sub_resource type="Resource" id="Resource_c11q5"]
+script = ExtResource("4_o86a8")
+enemy_types = Array[PackedScene]([ExtResource("5_ce5c8")])
+enemy_count = 3
+enemy_delay = 1.0
+metadata/_custom_type_script = "uid://bnkkpuj71oley"
+
+[sub_resource type="Resource" id="Resource_3jpjc"]
+script = ExtResource("4_o86a8")
+enemy_types = Array[PackedScene]([ExtResource("5_ce5c8")])
+enemy_count = 5
+enemy_delay = 2.0
+metadata/_custom_type_script = "uid://bnkkpuj71oley"
+
+[sub_resource type="Curve2D" id="Curve2D_7l4mf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 40, 56, 0, 0, 0, 0, 40, 152, 0, 0, 0, 0, 280, 152, 0, 0, 0, 0, 280, 56, 0, 0, 0, 0, 40, 56)
+}
+point_count = 5
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yla1s"]
+texture = ExtResource("3_i10s3")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_osokm"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_yla1s")
 
 [node name="Game" type="Node2D" unique_id=794865982]
-
-[node name="CutsceneManager" type="Node2D" parent="." unique_id=741662303]
-script = ExtResource("1_72uep")
-
-[node name="WaveManager" type="Node2D" parent="." unique_id=961727658]
-script = ExtResource("2_b2ers")
-
-[node name="Enviornment" type="Node2D" parent="." unique_id=1280532934]
+script = ExtResource("1_yla1s")
 
 [node name="Player" parent="." unique_id=451226399 groups=["player"] instance=ExtResource("1_ds3o4")]
 position = Vector2(160, 104)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1646091902]
+[node name="Camera" type="Camera2D" parent="." unique_id=588206387]
+anchor_mode = 0
+script = ExtResource("3_7l4mf")
+
+[node name="CutsceneManager" type="Node2D" parent="." unique_id=741662303]
+script = ExtResource("1_72uep")
+cutscenes = Array[ExtResource("3_q2try")]([SubResource("Resource_8u2a7"), SubResource("Resource_gqwak")])
+
+[node name="CutsceneAnimator" type="AnimationPlayer" parent="CutsceneManager" unique_id=1919605278]
+
+[node name="CutsceneDelayTimer" type="Timer" parent="CutsceneManager" unique_id=1107802549]
+
+[node name="Dialogue" type="Panel" parent="CutsceneManager" unique_id=261511466]
+visible = false
+z_index = 1000
+offset_left = 16.0
+offset_top = 112.0
+offset_right = 304.0
+offset_bottom = 168.0
+
+[node name="Margins" type="MarginContainer" parent="CutsceneManager/Dialogue" unique_id=1077631019]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 56.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="DialogueText" type="RichTextLabel" parent="CutsceneManager/Dialogue/Margins" unique_id=1504743246]
+layout_mode = 2
+bbcode_enabled = true
+text = "This is example of dialogue and it is very cool"
+scroll_active = false
+
+[node name="DialogueSoundPlayer" type="AudioStreamPlayer" parent="CutsceneManager" unique_id=1043341082]
+
+[node name="WaveManager" type="Node2D" parent="." unique_id=961727658]
+script = ExtResource("2_b2ers")
+waves = Array[ExtResource("4_o86a8")]([SubResource("Resource_c11q5"), SubResource("Resource_3jpjc")])
+
+[node name="EnemySpawnTimer" type="Timer" parent="WaveManager" unique_id=1182384478]
+one_shot = true
+
+[node name="SlowMoTimer" type="Timer" parent="WaveManager" unique_id=804514509]
+one_shot = true
+
+[node name="SpawnArea" type="Path2D" parent="WaveManager" unique_id=1123817722]
+position = Vector2(0, -34.666653)
+scale = Vector2(1, 1.3333333)
+curve = SubResource("Curve2D_7l4mf")
+
+[node name="SpawnAreaRatio" type="PathFollow2D" parent="WaveManager/SpawnArea" unique_id=510589431]
+position = Vector2(40, 56)
+rotation = 1.5707964
+
+[node name="SpawnPoint" type="Node2D" parent="WaveManager/SpawnArea/SpawnAreaRatio" unique_id=566378298]
+
+[node name="Enviornment" type="Node2D" parent="." unique_id=1280532934]
+
+[node name="Prototype" type="TileMapLayer" parent="Enviornment" unique_id=831898351]
+tile_map_data = PackedByteArray("AAABAAMAAAADAAIAAAABAAQAAAADAAIAAAABAAUAAAADAAIAAAABAAYAAAADAAIAAAABAAcAAAADAAIAAAABAAgAAAADAAIAAAASAAMAAAADAAIAAAASAAQAAAADAAIAAAASAAUAAAADAAIAAAASAAYAAAADAAIAAAASAAcAAAADAAIAAAASAAgAAAADAAIAAAABAAkAAAADAAIAAAASAAkAAAADAAIAAAABAAEAAAADAAIAAAACAAEAAAADAAIAAAADAAEAAAADAAIAAAAEAAEAAAADAAIAAAAFAAEAAAADAAIAAAAGAAEAAAADAAIAAAAHAAEAAAADAAIAAAAIAAEAAAADAAIAAAAJAAEAAAADAAIAAAAKAAEAAAADAAIAAAALAAEAAAADAAIAAAAMAAEAAAADAAIAAAANAAEAAAADAAIAAAAOAAEAAAADAAIAAAAPAAEAAAADAAIAAAAQAAEAAAADAAIAAAARAAEAAAADAAIAAAASAAEAAAADAAIAAAABAAsAAAADAAIAAAACAAsAAAADAAIAAAADAAsAAAADAAIAAAAEAAsAAAADAAIAAAAFAAsAAAADAAIAAAAGAAsAAAADAAIAAAAHAAsAAAADAAIAAAAIAAsAAAADAAIAAAAJAAsAAAADAAIAAAAKAAsAAAADAAIAAAALAAsAAAADAAIAAAAMAAsAAAADAAIAAAANAAsAAAADAAIAAAAOAAsAAAADAAIAAAAPAAsAAAADAAIAAAAQAAsAAAADAAIAAAARAAsAAAADAAIAAAASAAsAAAADAAIAAAABAAoAAAADAAIAAAASAAoAAAADAAIAAAASAAIAAAADAAIAAAABAAIAAAADAAIAAAA=")
+tile_set = SubResource("TileSet_osokm")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1819801841]
+script = ExtResource("10_q2try")
+
+[node name="HealthBar" type="ProgressBar" parent="HUD" unique_id=2072220745]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_right = 144.0
+offset_bottom = 8.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 6
+value = 32.87
+show_percentage = false

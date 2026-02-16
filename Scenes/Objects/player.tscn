@@ -10,10 +10,73 @@ size = Vector2(16, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dfgsd"]
 size = Vector2(16, 16)
 
+[sub_resource type="Animation" id="Animation_picsy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TakeDamageBox/Shape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dfgsd"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TakeDamageBox/Shape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.20000002, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(18.892157, 18.892157, 18.892157, 1), Color(1, 1, 1, 1), Color(18.892157, 18.892157, 18.892157, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xbekk"]
+_data = {
+&"RESET": SubResource("Animation_picsy"),
+&"hit": SubResource("Animation_dfgsd")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=451226399 groups=["Player"]]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_4qkr3")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1103317088]
+position = Vector2(0, -16)
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=549954537]
 position = Vector2(0, -12)
@@ -34,5 +97,12 @@ shape = SubResource("RectangleShape2D_dfgsd")
 
 [node name="Animator" type="AnimationPlayer" parent="." unique_id=1233188031]
 
+[node name="HitAnimator" type="AnimationPlayer" parent="." unique_id=1417530599]
+libraries/ = SubResource("AnimationLibrary_xbekk")
+autoplay = &"RESET"
+
 [node name="AttackTimer" type="Timer" parent="." unique_id=689959556]
+one_shot = true
+
+[node name="KnockbackTimer" type="Timer" parent="." unique_id=564687180]
 one_shot = true

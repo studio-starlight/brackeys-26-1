@@ -30,6 +30,7 @@ GameManager="*uid://biryacyitnndi"
 [debug]
 
 gdscript/warnings/unused_parameter=0
+gdscript/warnings/unused_signal=0
 gdscript/warnings/shadowed_variable=0
 
 [display]
