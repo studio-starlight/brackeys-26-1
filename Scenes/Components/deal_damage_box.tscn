@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dvxvrmwuiddp7"]
+
+[ext_resource type="Script" uid="uid://bu5qonx66myey" path="res://Scripts/Components/deal_damage_box.gd" id="1_3cjow"]
+
+[node name="DealDamageBox" type="Area2D" unique_id=2073182161]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_3cjow")

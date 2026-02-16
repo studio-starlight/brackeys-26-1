@@ -1,0 +1,2 @@
+class_name CutsceneManager
+extends Node2D

@@ -1,0 +1,2 @@
+class_name DealDamageBox
+extends Area2D

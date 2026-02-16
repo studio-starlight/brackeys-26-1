@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bixy7vhwh12a1"]
+
+[ext_resource type="Script" uid="uid://1odx7l7jfai7" path="res://Scripts/Objects/enemy.gd" id="1_7ifby"]
+[ext_resource type="Texture2D" uid="uid://cn63xquckvv33" path="res://icon.svg" id="2_i2hje"]
+[ext_resource type="PackedScene" uid="uid://bwyviu5nv8hh" path="res://Scenes/Components/take_damage_box.tscn" id="3_ink2j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ink2j"]
+size = Vector2(16, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ypxt"]
+size = Vector2(16, 16)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1254965848]
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("1_7ifby")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1578816072]
+modulate = Color(18.892157, 0, 0, 1)
+position = Vector2(0, -8)
+scale = Vector2(0.12499999, 0.125)
+texture = ExtResource("2_i2hje")
+
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=1938127680]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_ink2j")
+
+[node name="TakeDamageBox" parent="." unique_id=278541483 node_paths=PackedStringArray("parent") instance=ExtResource("3_ink2j")]
+collision_layer = 128
+parent = NodePath("..")
+
+[node name="Shape" type="CollisionShape2D" parent="TakeDamageBox" unique_id=1274667830]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_8ypxt")

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bwyviu5nv8hh"]
+
+[ext_resource type="Script" uid="uid://dknrmjdgi8unx" path="res://Scripts/Components/take_damage_box.gd" id="1_4y1gb"]
+
+[node name="TakeDamageBox" type="Area2D" unique_id=278541483]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("1_4y1gb")
