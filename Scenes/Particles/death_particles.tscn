@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://btalbe5bl7hqm"]
+
+[ext_resource type="Texture2D" uid="uid://b75x76v0m3vdv" path="res://Graphics/Effects/Circle.png" id="1_we782"]
+[ext_resource type="Script" uid="uid://boj3c1ugq5k78" path="res://Scenes/Particles/particles.gd" id="2_0moj5"]
+
+[sub_resource type="Curve" id="Curve_0moj5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1685394), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tobr5"]
+curve = SubResource("Curve_0moj5")
+
+[sub_resource type="Curve" id="Curve_05mdn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7027027, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_eqnvy"]
+curve = SubResource("Curve_05mdn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w0w3g"]
+particle_flag_disable_z = true
+radial_velocity_min = 32.249977
+radial_velocity_max = 75.25998
+radial_velocity_curve = SubResource("CurveTexture_tobr5")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_eqnvy")
+
+[node name="DeathParticles" type="GPUParticles2D" unique_id=1018804535]
+emitting = false
+texture = ExtResource("1_we782")
+one_shot = true
+explosiveness = 0.85
+randomness = 0.82
+process_material = SubResource("ParticleProcessMaterial_w0w3g")
+script = ExtResource("2_0moj5")

@@ -5,6 +5,7 @@ extends CharacterBody2D
 # the base enemy script
 # ========================================
 const HIT_PARTICLES = preload("uid://drgkhnopj5ci0")
+const DEATH_PARTICLES = preload("uid://btalbe5bl7hqm")
 @onready var deal_damage_box: DealDamageBox = $DealDamageBox
 @onready var knockback_timer: Timer = $KnockbackTimer
 @onready var attack_timer: Timer = $AttackTimer
@@ -15,7 +16,7 @@ const HIT_PARTICLES = preload("uid://drgkhnopj5ci0")
 @onready var detect_area: Area2D = $DetectArea
 @onready var sprite: Sprite2D = $Sprite
 @export var enemy_stats : Stats
-var hit_time : float = 0.8
+var hit_time : float = 1.0
 var attack_speed : float = 110
 var attack_time : float = 0.2
 var health : float
@@ -39,7 +40,6 @@ var random_number
 
 func take_damage(damage_amount : int, damage_direction : Vector2) -> void:
 	health -= damage_amount
-	EventBus.emit_signal("shake_camera", 2, 5)
 	
 	current_state = EnemyState.HIT
 	hit_timer.start(hit_time)
@@ -52,9 +52,12 @@ func take_damage(damage_amount : int, damage_direction : Vector2) -> void:
 		hit_particles.emitting = true
 		add_child(hit_particles)
 
-func apply_knockback(direction : Vector2, force: float, duraction : float) -> void:
-	knockback = direction * force
-	knockback_time = duraction
+func apply_knockback(source_position : Vector2) -> void:
+	var force : float = 180
+	var duration : float = 0.2
+	knockback = global_position - source_position
+	knockback = knockback.normalized() * force
+	knockback_time = duration
 	knockback_timer.start(knockback_time)
 	is_knockback = true
 
@@ -103,6 +106,10 @@ func _physics_process(delta: float) -> void:
 
 func _die() -> void:
 	EventBus.emit_signal("enemy_defeated")
+	var death_particles = DEATH_PARTICLES.instantiate()
+	death_particles.global_position = global_position
+	death_particles.emitting = true
+	get_parent().add_child(death_particles)
 	queue_free()
 
 func _chase() -> void:

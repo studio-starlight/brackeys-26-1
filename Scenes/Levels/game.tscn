@@ -87,9 +87,9 @@ cutscenes = Array[ExtResource("3_q2try")]([SubResource("Resource_8u2a7"), SubRes
 [node name="Dialogue" type="TextureRect" parent="CutsceneManager" unique_id=250755429]
 z_index = 1000
 offset_left = 64.0
-offset_top = 112.0
+offset_top = 128.0
 offset_right = 250.0
-offset_bottom = 154.0
+offset_bottom = 170.0
 texture = ExtResource("8_dw2ve")
 
 [node name="Margins" type="MarginContainer" parent="CutsceneManager/Dialogue" unique_id=1077631019]

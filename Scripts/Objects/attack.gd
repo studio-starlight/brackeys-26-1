@@ -28,4 +28,3 @@ func _on_attack_finished(animation_name : String) -> void:
 func _on_attack(area : Area2D) -> void:
 	if area is TakeDamageBox:
 		area.take_damage(damage, player_position)
-		

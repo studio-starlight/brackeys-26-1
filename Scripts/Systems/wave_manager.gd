@@ -44,6 +44,7 @@ func start_wave(current_story_event : GameManager.StoryEvent) -> void:
 		await enemy_spawn_timer.timeout
 
 func end_wave() -> void:
+	EventBus.emit_signal("shake_camera", 10, 3)
 	Engine.time_scale = slow_mo_scale
 	slow_mo_timer.start(slow_mo_time)
 	await slow_mo_timer.timeout

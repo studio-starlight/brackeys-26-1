@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bckujjmcy28jy"]
 
 [ext_resource type="Texture2D" uid="uid://b75x76v0m3vdv" path="res://Graphics/Effects/Circle.png" id="1_4o1xv"]
+[ext_resource type="Script" uid="uid://boj3c1ugq5k78" path="res://Scenes/Particles/particles.gd" id="2_2gdjm"]
 
 [sub_resource type="Curve" id="Curve_2gdjm"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.983871, 0), 0.0, 0.0, 0, 0]
@@ -21,8 +22,9 @@ scale_curve = SubResource("CurveTexture_r0cps")
 [node name="SpawnParticles" type="GPUParticles2D" unique_id=1166654602]
 emitting = false
 texture = ExtResource("1_4o1xv")
-lifetime = 1.1500000000000001
+lifetime = 1.15
 one_shot = true
 explosiveness = 0.89
 randomness = 0.75
 process_material = SubResource("ParticleProcessMaterial_o00al")
+script = ExtResource("2_2gdjm")

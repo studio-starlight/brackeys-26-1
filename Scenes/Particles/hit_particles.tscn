@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://drgkhnopj5ci0"]
 
 [ext_resource type="Texture2D" uid="uid://b75x76v0m3vdv" path="res://Graphics/Effects/Circle.png" id="1_3okck"]
+[ext_resource type="Script" uid="uid://boj3c1ugq5k78" path="res://Scenes/Particles/particles.gd" id="2_wdydl"]
 
 [sub_resource type="Curve" id="Curve_y18d7"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
@@ -44,3 +45,4 @@ one_shot = true
 explosiveness = 0.93
 visibility_rect = Rect2(-75, -75, 150, 150)
 process_material = SubResource("ParticleProcessMaterial_bxl2c")
+script = ExtResource("2_wdydl")

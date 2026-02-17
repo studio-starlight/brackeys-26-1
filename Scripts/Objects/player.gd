@@ -16,7 +16,7 @@ var can_attack : bool = true
 var facing_right : bool = true
 var move_direction : Vector2
 var base_damage : float = 5.0
-var attack_time : float = 0.5
+var attack_time : float = 0.4
 var knockback : Vector2
 var knockback_time : float
 @onready var attack_timer: Timer = $AttackTimer
@@ -37,9 +37,12 @@ func take_damage(damage_amount : int, damage_directin : Vector2) -> void:
 	else:
 		hit_animator.call_deferred("play", "hit")
 
-func apply_knockback(direction : Vector2, force: float, duraction : float) -> void:
-	knockback = direction * force
-	knockback_time = duraction
+func apply_knockback(source_position : Vector2) -> void:
+	var force : float = 50
+	var duration : float = 0.5
+	knockback = global_position - source_position
+	knockback = knockback.normalized() * force
+	knockback_time = duration
 	knockback_timer.start(knockback_time)
 	is_knockback = true
 
