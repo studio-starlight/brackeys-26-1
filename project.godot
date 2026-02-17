@@ -26,6 +26,7 @@ Util="*uid://ban41oqgkaxbw"
 AudioManager="*uid://ci35iw40xqglw"
 EventBus="*uid://c23vhjno0g6ja"
 GameManager="*uid://biryacyitnndi"
+MouseManager="*uid://bog88b1lqkkea"
 
 [debug]
 

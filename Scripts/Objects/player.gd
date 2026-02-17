@@ -28,7 +28,7 @@ var knockback_time : float
 func get_health() -> int:
 	return health
 
-func take_damage(damage_amount : int) -> void:
+func take_damage(damage_amount : int, damage_directin : Vector2) -> void:
 	health -= damage_amount
 	EventBus.emit_signal("shake_camera", 8, 3)
 	

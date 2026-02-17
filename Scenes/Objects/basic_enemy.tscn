@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://clqc577hc7fxh" path="res://Graphics/Characters/sprite_enemy_lolli.png" id="3_hn8a1"]
 [ext_resource type="PackedScene" uid="uid://bwyviu5nv8hh" path="res://Scenes/Components/take_damage_box.tscn" id="4_w3cqj"]
 [ext_resource type="Script" uid="uid://bu5qonx66myey" path="res://Scripts/Components/deal_damage_box.gd" id="5_1go4f"]
-[ext_resource type="Texture2D" uid="uid://b75x76v0m3vdv" path="res://Graphics/Effects/Circle.png" id="6_8xx4p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ink2j"]
 size = Vector2(6, 8)
@@ -36,7 +35,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HitParticles:emitting")
+tracks/1/path = NodePath("TakeDamageBox/Shape:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -48,22 +47,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TakeDamageBox/Shape:disabled")
+tracks/2/path = NodePath("Sprite:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -99,22 +86,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HitParticles:emitting")
+tracks/2/path = NodePath("TakeDamageBox/Shape:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("TakeDamageBox/Shape:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -218,39 +193,6 @@ _data = {
 &"run": SubResource("Animation_8xx4p")
 }
 
-[sub_resource type="Curve" id="Curve_y18d7"]
-_limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_6cxka"]
-curve = SubResource("Curve_y18d7")
-
-[sub_resource type="Curve" id="Curve_6ucen"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.33333334, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_h0663"]
-curve = SubResource("Curve_6ucen")
-
-[sub_resource type="Curve" id="Curve_7sqod"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_512dv"]
-curve = SubResource("Curve_7sqod")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bxl2c"]
-particle_flag_disable_z = true
-spread = 20.0
-initial_velocity_min = 67.119995
-initial_velocity_max = 87.259995
-angular_velocity_min = -1.6093254e-05
-angular_velocity_max = 86.97998
-angular_velocity_curve = SubResource("CurveTexture_6cxka")
-radial_velocity_curve = SubResource("CurveTexture_h0663")
-scale_curve = SubResource("CurveTexture_512dv")
-
 [node name="BasicEnemy" type="CharacterBody2D" unique_id=1254965848]
 collision_layer = 4
 motion_mode = 1
@@ -311,13 +253,3 @@ libraries/ = SubResource("AnimationLibrary_0g2vl")
 
 [node name="Animator" type="AnimationPlayer" parent="." unique_id=221152035]
 libraries/ = SubResource("AnimationLibrary_nucoc")
-
-[node name="HitParticles" type="GPUParticles2D" parent="." unique_id=528796765]
-emitting = false
-amount = 7
-texture = ExtResource("6_8xx4p")
-lifetime = 0.77
-one_shot = true
-explosiveness = 0.93
-visibility_rect = Rect2(-75, -75, 150, 150)
-process_material = SubResource("ParticleProcessMaterial_bxl2c")

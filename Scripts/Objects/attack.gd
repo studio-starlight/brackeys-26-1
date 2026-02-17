@@ -2,6 +2,7 @@ class_name Attack
 extends Node2D
 
 var damage : float = -1
+var player_position : Vector2
 
 @onready var animator: AnimationPlayer = $Animator
 @onready var deal_damage_box: Area2D = $DealDamageBox
@@ -12,6 +13,7 @@ static func new_attack(starting_position : Vector2, new_damage : float) -> Attac
 	var new_attack : Attack = ATTACK.instantiate()
 	new_attack.global_position = starting_position
 	new_attack.damage = new_damage
+	new_attack.player_position = starting_position
 	return new_attack
 
 func _ready() -> void:
@@ -25,4 +27,5 @@ func _on_attack_finished(animation_name : String) -> void:
 
 func _on_attack(area : Area2D) -> void:
 	if area is TakeDamageBox:
-		area.take_damage(damage, global_position)
+		area.take_damage(damage, player_position)
+		

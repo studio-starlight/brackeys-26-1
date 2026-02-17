@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bog88b1lqkkea"]
+
+[ext_resource type="Script" uid="uid://cydsmr3pu5x1k" path="res://Scripts/Globals/mouse_manager.gd" id="1_usn21"]
+[ext_resource type="Texture2D" uid="uid://4h80dcl80mrw" path="res://Graphics/User Interface/sprite_cursor.png" id="2_qm0gp"]
+
+[node name="MouseManager" type="Node2D" unique_id=2077233462]
+script = ExtResource("1_usn21")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1429717152]
+texture = ExtResource("2_qm0gp")

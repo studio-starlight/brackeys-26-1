@@ -4,12 +4,12 @@ extends CharacterBody2D
 #=========================================
 # the base enemy script
 # ========================================
+const HIT_PARTICLES = preload("uid://drgkhnopj5ci0")
 @onready var deal_damage_box: DealDamageBox = $DealDamageBox
 @onready var knockback_timer: Timer = $KnockbackTimer
 @onready var attack_timer: Timer = $AttackTimer
 @onready var hit_timer: Timer = $HitTimer
 @onready var prepare_timer: Timer = $PrepareTimer
-@onready var hit_particles: GPUParticles2D = $HitParticles
 @onready var animator: AnimationPlayer = $Animator
 @onready var hit_animator: AnimationPlayer = $HitAnimator
 @onready var detect_area: Area2D = $DetectArea
@@ -37,7 +37,7 @@ var current_state : EnemyState
 var rng = RandomNumberGenerator.new()
 var random_number
 
-func take_damage(damage_amount : int) -> void:
+func take_damage(damage_amount : int, damage_direction : Vector2) -> void:
 	health -= damage_amount
 	EventBus.emit_signal("shake_camera", 2, 5)
 	
@@ -47,13 +47,16 @@ func take_damage(damage_amount : int) -> void:
 		_die()
 	else:
 		hit_animator.play("hit")
+		var hit_particles = HIT_PARTICLES.instantiate()
+		hit_particles.rotation = get_angle_to(damage_direction) + PI
+		hit_particles.emitting = true
+		add_child(hit_particles)
 
 func apply_knockback(direction : Vector2, force: float, duraction : float) -> void:
 	knockback = direction * force
 	knockback_time = duraction
 	knockback_timer.start(knockback_time)
 	is_knockback = true
-	hit_particles.rotation = get_angle_to(direction)
 
 func get_circle_position(random : float) -> Vector2:
 	var kill_circle_center : Vector2 = target_position

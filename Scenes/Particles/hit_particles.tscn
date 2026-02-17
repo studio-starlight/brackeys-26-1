@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://drgkhnopj5ci0"]
+
+[ext_resource type="Texture2D" uid="uid://b75x76v0m3vdv" path="res://Graphics/Effects/Circle.png" id="1_3okck"]
+
+[sub_resource type="Curve" id="Curve_y18d7"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6cxka"]
+curve = SubResource("Curve_y18d7")
+
+[sub_resource type="Curve" id="Curve_6ucen"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.33333334, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h0663"]
+curve = SubResource("Curve_6ucen")
+
+[sub_resource type="Curve" id="Curve_7sqod"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_512dv"]
+curve = SubResource("Curve_7sqod")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bxl2c"]
+particle_flag_disable_z = true
+spread = 20.0
+initial_velocity_min = 67.119995
+initial_velocity_max = 87.259995
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 86.97998
+angular_velocity_curve = SubResource("CurveTexture_6cxka")
+radial_velocity_curve = SubResource("CurveTexture_h0663")
+scale_curve = SubResource("CurveTexture_512dv")
+
+[node name="HitParticles" type="GPUParticles2D" unique_id=871841102]
+emitting = false
+amount = 7
+texture = ExtResource("1_3okck")
+lifetime = 0.77
+one_shot = true
+explosiveness = 0.93
+visibility_rect = Rect2(-75, -75, 150, 150)
+process_material = SubResource("ParticleProcessMaterial_bxl2c")

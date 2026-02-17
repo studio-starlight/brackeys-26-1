@@ -25,7 +25,7 @@ var current_game_state : GameState
 
 func advance_story_event() -> void:
 	if current_story_event < StoryEvent.ENDING:
-		current_story_event += 1
+		current_story_event += 1 as StoryEvent
 
 func get_story_event() -> StoryEvent:
 	return current_story_event

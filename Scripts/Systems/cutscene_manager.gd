@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var cutscene_animator: AnimationPlayer = $CutsceneAnimator
 @onready var cutscene_delay_timer: Timer = $CutsceneDelayTimer
-@onready var dialogue: Panel = $Dialogue
+@onready var dialogue: TextureRect = $Dialogue
 @onready var dialogue_sound_player: AudioStreamPlayer = $DialogueSoundPlayer
 @onready var dialogue_text: RichTextLabel = $Dialogue/Margins/DialogueText
 
@@ -23,7 +23,7 @@ func _ready() -> void:
 func start_cutscene(current_story_scene : GameManager.StoryEvent) -> void:
 	match current_story_scene:
 		GameManager.StoryEvent.WAVE1:
-			current_cutscene = cutscenes.get(1)
+			current_cutscene = cutscenes.get(0)
 		GameManager.StoryEvent.WAVE2:
 			current_cutscene = cutscenes.get(2)
 	if current_cutscene == null:
