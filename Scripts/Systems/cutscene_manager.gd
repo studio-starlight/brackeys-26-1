@@ -78,8 +78,8 @@ func _start_animation(i : CutsceneAnimationData) -> void:
 	current_item += 1
 	next_item = true
 func _start_dialogue(i : CutsceneTextData) -> void:
-	
-	
+	if !is_active || !get_tree():
+		return
 	dialogue_text.visible_characters = 0
 	dialogue_text.text = i.text
 	var text_without_square_brackets: String = _text_without_square_brackets(i.text)
@@ -103,7 +103,9 @@ func _start_dialogue(i : CutsceneTextData) -> void:
 		await get_tree().process_frame
 	
 	while true:
-		await  get_tree().process_frame
+		if !get_tree():
+			return
+		await get_tree().process_frame
 		if dialogue_text.visible_characters == total_characters:
 			if Input.is_action_just_pressed("attack"):
 				current_item += 1
