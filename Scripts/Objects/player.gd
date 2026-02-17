@@ -7,7 +7,7 @@ extends CharacterBody2D
 # ========================================
 
 const BASE_SPEED : float = 80
-const MAX_HEALTH : int = 30
+const MAX_HEALTH : int = 5
 var health : int 
 var disabled : bool = false
 var is_knockback : bool = false
@@ -75,7 +75,6 @@ func _handle_face_direction() -> void:
 
 func _handle_attack() -> void:
 	if Input.is_action_pressed("attack") && can_attack && !is_attacking:
-		print("Clicked Attack!")
 		animator.play("attack")
 		can_attack = false
 		is_attacking = true
@@ -101,7 +100,6 @@ func _handle_animation() -> void:
 		animator.play("idle")
 
 func _attack() -> void:
-	print("_attack() called!")
 	var new_attack = Attack.new_attack(pivot.global_position, base_damage)
 	attack_timer.start(attack_time)
 	get_parent().add_child(new_attack)

@@ -209,14 +209,5 @@ tile_set = SubResource("TileSet_osokm")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1819801841]
 script = ExtResource("10_q2try")
 
-[node name="HealthBar" type="ProgressBar" parent="HUD" unique_id=2072220745]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -144.0
-offset_right = 144.0
-offset_bottom = 8.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 6
-value = 32.87
-show_percentage = false
+[node name="HealthBar" type="HBoxContainer" parent="HUD" unique_id=1554888706]
+theme_override_constants/separation = -2

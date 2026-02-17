@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bj415opnbr8pj"]
+
+[ext_resource type="Script" uid="uid://d3a185ymle71g" path="res://Scripts/Objects/heart_gui.gd" id="1_obvge"]
+[ext_resource type="Texture2D" uid="uid://833d4td5v1u" path="res://Graphics/User Interface/sprite_hearts.png" id="2_s3yir"]
+
+[node name="HeartGui" type="Control" unique_id=57456276]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -304.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_obvge")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1558432085]
+texture = ExtResource("2_s3yir")
+centered = false
+hframes = 2

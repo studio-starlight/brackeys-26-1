@@ -21,15 +21,13 @@ func _ready() -> void:
 	
 
 func start_cutscene(current_story_scene : GameManager.StoryEvent) -> void:
-	print("Cutscene Start...")
-	print(current_story_scene)
 	match current_story_scene:
 		GameManager.StoryEvent.WAVE1:
 			current_cutscene = cutscenes.get(1)
 		GameManager.StoryEvent.WAVE2:
 			current_cutscene = cutscenes.get(2)
 	if current_cutscene == null:
-		printerr("Cutscene no assigned")
+		printerr("Cutscene not assigned")
 		current_cutscene = cutscenes.get(0)
 	current_item = 0
 	is_active = true
@@ -38,14 +36,13 @@ func start_cutscene(current_story_scene : GameManager.StoryEvent) -> void:
 	visible = true
 
 func _process(delta: float) -> void:
-	if !is_active:
+	if !is_active || !is_inside_tree():
 		return
 	
 	if current_item == current_cutscene.cutscene_data.size():
 		if !player:
 			player = get_tree().get_first_node_in_group("player")
 			return
-		print("Cutscene End")
 		player.disabled = false
 		EventBus.emit_signal("cutscene_end")
 		is_active = false
@@ -78,7 +75,7 @@ func _start_animation(i : CutsceneAnimationData) -> void:
 	current_item += 1
 	next_item = true
 func _start_dialogue(i : CutsceneTextData) -> void:
-	if !is_active || !get_tree():
+	if not is_inside_tree():
 		return
 	dialogue_text.visible_characters = 0
 	dialogue_text.text = i.text
@@ -103,7 +100,7 @@ func _start_dialogue(i : CutsceneTextData) -> void:
 		await get_tree().process_frame
 	
 	while true:
-		if !get_tree():
+		if !is_inside_tree():
 			return
 		await get_tree().process_frame
 		if dialogue_text.visible_characters == total_characters:

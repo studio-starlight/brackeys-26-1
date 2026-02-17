@@ -38,7 +38,6 @@ func start_wave(current_story_event : GameManager.StoryEvent) -> void:
 		await enemy_spawn_timer.timeout
 
 func end_wave() -> void:
-	print("Wave Cleared!")
 	Engine.time_scale = slow_mo_scale
 	slow_mo_timer.start(slow_mo_time)
 	await slow_mo_timer.timeout
@@ -50,8 +49,6 @@ func _process(delta: float) -> void:
 		return
 
 func _enemy_defeated() -> void:
-	print("Enemy Defeated!")
 	enemy_count -= 1
-	print(enemy_count)
 	if enemy_count <= 0:
 		end_wave()
