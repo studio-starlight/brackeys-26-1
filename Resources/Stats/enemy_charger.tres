@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Stats" format=3 uid="uid://d4d4fi1t8gvle"]
+
+[ext_resource type="Script" uid="uid://cf607d0xssiui" path="res://Resources/Stats/stats.gd" id="1_ji2cu"]
+
+[resource]
+script = ExtResource("1_ji2cu")
+health = 20.0
+speed = 10.0
+defense = 5.0
+attack = 2.0
+metadata/_custom_type_script = "uid://cf607d0xssiui"

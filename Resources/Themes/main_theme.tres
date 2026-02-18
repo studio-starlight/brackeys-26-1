@@ -1,0 +1,15 @@
+[gd_resource type="Theme" format=3 uid="uid://ba3ofuhdx02cr"]
+
+[ext_resource type="FontFile" uid="uid://45p1fy2s4urb" path="res://Graphics/Fonts/m5x7.ttf" id="1_oac4r"]
+
+[resource]
+Button/colors/font_color = Color(0.8509804, 0.5254902, 0.3647059, 1)
+Button/colors/font_focus_color = Color(0.9647059, 0.8509804, 0.58431375, 1)
+Button/colors/font_hover_color = Color(0.9647059, 0.8509804, 0.58431375, 1)
+Button/colors/font_pressed_color = Color(0.9647059, 0.8509804, 0.58431375, 1)
+Button/fonts/font = ExtResource("1_oac4r")
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = null
+Button/styles/pressed = null

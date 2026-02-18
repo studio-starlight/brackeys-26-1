@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dhnfed0gjaehd"]
+
+[ext_resource type="Script" uid="uid://cbxnr7jndrsyq" path="res://Scripts/Objects/enemy_charger.gd" id="1_bqp3m"]
+
+[node name="EnemyCharger" type="CharacterBody2D" unique_id=1628111751]
+script = ExtResource("1_bqp3m")

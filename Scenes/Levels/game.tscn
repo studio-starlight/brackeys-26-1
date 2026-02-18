@@ -14,6 +14,9 @@
 [ext_resource type="FontFile" uid="uid://45p1fy2s4urb" path="res://Graphics/Fonts/m5x7.ttf" id="9_8u2a7"]
 [ext_resource type="Script" uid="uid://ddkoy6vp3mmqo" path="res://Scripts/Systems/hud.gd" id="10_q2try"]
 [ext_resource type="Texture2D" uid="uid://vlvfe3oe2u8p" path="res://Graphics/Enviornments/sprite_background.png" id="11_xdwyp"]
+[ext_resource type="Script" uid="uid://bar5ud07elybb" path="res://Scripts/Systems/pause_manager.gd" id="13_8u2a7"]
+[ext_resource type="Texture2D" uid="uid://cx4u4kpk7j5jl" path="res://Graphics/User Interface/sprite_pausebox.png" id="14_e8oij"]
+[ext_resource type="Theme" uid="uid://ba3ofuhdx02cr" path="res://Resources/Themes/main_theme.tres" id="15_gqwak"]
 
 [sub_resource type="Resource" id="Resource_ahqd5"]
 script = ExtResource("7_xdwyp")
@@ -85,6 +88,7 @@ cutscenes = Array[ExtResource("3_q2try")]([SubResource("Resource_8u2a7"), SubRes
 [node name="CutsceneDelayTimer" type="Timer" parent="CutsceneManager" unique_id=1107802549]
 
 [node name="Dialogue" type="TextureRect" parent="CutsceneManager" unique_id=250755429]
+visible = false
 z_index = 1000
 offset_left = 64.0
 offset_top = 128.0
@@ -132,6 +136,48 @@ position = Vector2(40, 56)
 rotation = 2.3561947
 
 [node name="SpawnPoint" type="Node2D" parent="WaveManager/SpawnArea/SpawnAreaRatio" unique_id=566378298]
+
+[node name="PauseManager" type="Node2D" parent="." unique_id=758325804 node_paths=PackedStringArray("player")]
+process_mode = 3
+visible = false
+z_index = 1000
+script = ExtResource("13_8u2a7")
+player = NodePath("../Player")
+
+[node name="PauseBox" type="TextureRect" parent="PauseManager" unique_id=930241643]
+offset_left = 112.0
+offset_top = 40.0
+offset_right = 206.0
+offset_bottom = 132.0
+texture = ExtResource("14_e8oij")
+
+[node name="PauseButtons" type="VBoxContainer" parent="PauseManager/PauseBox" unique_id=1709535871]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 8.0
+offset_right = 92.0
+offset_bottom = 80.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Resume" type="Button" parent="PauseManager/PauseBox/PauseButtons" unique_id=92276216]
+layout_mode = 2
+theme = ExtResource("15_gqwak")
+theme_override_fonts/font = ExtResource("9_8u2a7")
+text = "Resume"
+flat = true
+
+[node name="Main Menu" type="Button" parent="PauseManager/PauseBox/PauseButtons" unique_id=1724589486]
+layout_mode = 2
+theme = ExtResource("15_gqwak")
+text = "Main Menu"
+flat = true
+
+[node name="Quit" type="Button" parent="PauseManager/PauseBox/PauseButtons" unique_id=4864571]
+layout_mode = 2
+theme = ExtResource("15_gqwak")
+text = "Quit"
+flat = true
 
 [node name="Enviornment" type="Node2D" parent="." unique_id=1280532934]
 metadata/_edit_lock_ = true

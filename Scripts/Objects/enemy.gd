@@ -64,10 +64,9 @@ func apply_knockback(source_position : Vector2) -> void:
 func get_circle_position(random : float) -> Vector2:
 	var kill_circle_center : Vector2 = target_position
 	var radius : int = 10
-	var angle = random * PI * 2
-	var x = kill_circle_center.x + cos(angle) * radius
-	var y = kill_circle_center.y + sin(angle) * radius
-	
+	var angle : float = random * PI * 2
+	var x : float = kill_circle_center.x + cos(angle) * radius
+	var y : float = kill_circle_center.y + sin(angle) * radius
 	return Vector2(x,y)
 
 func _ready() -> void:

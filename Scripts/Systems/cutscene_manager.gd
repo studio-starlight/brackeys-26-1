@@ -22,10 +22,14 @@ func _ready() -> void:
 
 func start_cutscene(current_story_scene : GameManager.StoryEvent) -> void:
 	match current_story_scene:
-		GameManager.StoryEvent.WAVE1:
+		GameManager.StoryEvent.START:
 			current_cutscene = cutscenes.get(0)
+		GameManager.StoryEvent.WAVE1:
+			current_cutscene = cutscenes.get(1)
 		GameManager.StoryEvent.WAVE2:
 			current_cutscene = cutscenes.get(2)
+		_:
+			current_cutscene = cutscenes.get(cutscenes.size() - 1)
 	if current_cutscene == null:
 		printerr("Cutscene not assigned")
 		current_cutscene = cutscenes.get(0)
