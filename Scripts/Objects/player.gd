@@ -1,68 +1,79 @@
 class_name Player
 extends CharacterBody2D
 
-#=========================================
-# The main player controller that controls
-# player input and action
-# ========================================
+## The Player Controller
+##
+## The Player Controller takes input, manages the player state, and
+## executes certain behaviours depending on states and conditions
 
-const BASE_SPEED : float = 80
-const MAX_HEALTH : int = 5
-var health : int 
+enum PlayerState {FREE, ATTACKING, HIT}
+@export var stats : Stats
+var current_state : PlayerState
 var disabled : bool = false
-var is_knockback : bool = false
-var is_attacking : bool = false
-var can_attack : bool = true
+var is_invincible : bool = false
 var facing_right : bool = true
 var move_direction : Vector2
-var base_damage : float = 5.0
 var attack_time : float = 0.4
+var invincibility_duration : float = 1.3
 var knockback : Vector2
 var knockback_time : float
 @onready var attack_timer: Timer = $AttackTimer
+@onready var attack_buffer_timer: Timer = $AttackBufferTimer
 @onready var knockback_timer: Timer = $KnockbackTimer
-@onready var hit_animator: AnimationPlayer = $HitAnimator
+@onready var invincibility_timer: Timer = $invincibilityTimer
+@onready var take_damage_box: TakeDamageBox = $TakeDamageBox
 @onready var pivot: Node2D = $Pivot
 @onready var animator: AnimationPlayer = $Animator
+@onready var hit_animator: AnimationPlayer = $HitAnimator
 
-func get_health() -> int:
-	return health
-
-func take_damage(damage_amount : int, damage_directin : Vector2) -> void:
-	health -= damage_amount
-	EventBus.emit_signal("shake_camera", 8, 3)
-	
-	if health <= 0:
+func take_damage(damage_amount : int) -> void:
+	stats.health -= damage_amount
+	if stats.health <= 0:
 		_die()
-	else:
-		hit_animator.call_deferred("play", "hit")
 
-func apply_knockback(source_position : Vector2) -> void:
-	var force : float = 50
-	var duration : float = 0.5
-	knockback = global_position - source_position
-	knockback = knockback.normalized() * force
-	knockback_time = duration
-	knockback_timer.start(knockback_time)
-	is_knockback = true
+func apply_knockback(direction: Vector2) -> void:
+	var knockback_force : float = 10
+	var knockback_deceleration : float = 0.7
+	velocity = velocity.move_toward(direction * knockback_force, knockback_deceleration)
+
+func change_state(new_state : PlayerState) -> void:
+	var previous_state = current_state
+	current_state = new_state
 
 func _ready() -> void:
-	# connect signals
 	attack_timer.connect("timeout", _on_attack_finished)
 	knockback_timer.connect("timeout", _on_knockback_finished)
-	health = MAX_HEALTH
+	invincibility_timer.connect("timeout", _on_invincibility_finished)
+	take_damage_box.connect("area_entered", _on_damage_box_entered)
+	stats.health = stats.max_health
 
 func _physics_process(_delta: float) -> void:
 	if disabled:
 		animator.play("idle")
 		return
-	if is_knockback:
-		_handle_knockback()
-	else:
-		_handle_movement()
-	_handle_face_direction()
-	_handle_attack()
+	match current_state:
+		PlayerState.FREE:
+			_free_state()
+		PlayerState.ATTACKING:
+			_attacking_state()
+		PlayerState.HIT:
+			_hit_state()
 	_handle_animation()
+
+# State Logic
+
+func _free_state() -> void:
+	_handle_face_direction()
+	_handle_movement()
+	_handle_attack()
+
+func _attacking_state() -> void:
+	pass
+
+func _hit_state() -> void:
+	move_and_slide()
+
+# Basic Logic
 
 func _handle_movement() -> void:
 	move_direction = Input.get_vector("left", "right", "up", "down")
@@ -77,33 +88,26 @@ func _handle_face_direction() -> void:
 		facing_right = true
 
 func _handle_attack() -> void:
-	if Input.is_action_pressed("attack") && can_attack && !is_attacking:
+	if Input.is_action_pressed("attack"):
 		animator.play("attack")
-		can_attack = false
-		is_attacking = true
-
-func _handle_knockback() -> void:
-	velocity = knockback
-	move_and_slide()
+		change_state(PlayerState.ATTACKING)
 
 func _handle_animation() -> void:
 	if facing_right:
 		$Sprite.flip_h = false
 	else:
 		$Sprite.flip_h = true
-	if is_knockback:
-		animator.play("hit")
-		return
-	elif is_attacking:
-		return
-	
-	if move_direction != Vector2.ZERO:
-		animator.play("run")
-	else:
-		animator.play("idle")
+	match current_state:
+		PlayerState.FREE:
+			if move_direction != Vector2.ZERO:
+				animator.play("run")
+			else:
+				animator.play("idle")
+		PlayerState.ATTACKING:
+			pass
 
-func _attack() -> void:
-	var new_attack = Attack.new_attack(pivot.global_position, base_damage)
+func _spawn_attack() -> void:
+	var new_attack = Attack.new_attack(pivot.global_position, stats.attack)
 	attack_timer.start(attack_time)
 	get_parent().add_child(new_attack)
 
@@ -111,13 +115,26 @@ func _die() -> void:
 	get_tree().call_deferred("reload_current_scene")
 
 func _calculate_speed() -> float:
-	var speed : float = BASE_SPEED
+	var speed : float = stats.speed
 	return speed
 
 func _on_attack_finished() -> void:
-	can_attack = true
-	is_attacking = false
+	change_state(PlayerState.FREE)
 
 func _on_knockback_finished() -> void:
-	is_knockback = false
 	knockback = Vector2.ZERO
+
+func _on_invincibility_finished() -> void:
+	is_invincible = false
+
+func _on_damage_box_entered(area : DealDamageBox) -> void:
+	if !is_invincible:
+		var knockback_direction = global_position - area.global_position
+		EventBus.emit_signal("shake_camera", 10, 5)
+		EventBus.emit_signal("slow_time", 0.5, 0.25)
+		is_invincible = true
+		invincibility_timer.start(invincibility_duration)
+		hit_animator.play("hit")
+		take_damage(area.attack)
+		apply_knockback(knockback_direction)
+		

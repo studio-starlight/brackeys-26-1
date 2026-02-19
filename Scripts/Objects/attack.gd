@@ -17,14 +17,10 @@ static func new_attack(starting_position : Vector2, new_damage : float) -> Attac
 	return new_attack
 
 func _ready() -> void:
+	deal_damage_box.attack = damage
 	animator.connect("animation_finished", _on_attack_finished)
-	deal_damage_box.connect("area_entered", _on_attack)
 	look_at(get_global_mouse_position())
 	animator.play("attack")
 
 func _on_attack_finished(animation_name : String) -> void:
 	queue_free()
-
-func _on_attack(area : Area2D) -> void:
-	if area is TakeDamageBox:
-		area.take_damage(damage, player_position)

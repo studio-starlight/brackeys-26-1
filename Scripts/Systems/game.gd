@@ -6,6 +6,7 @@ extends Node2D
 @onready var hud: HUD = $HUD
 @onready var player: Player = $Player
 @onready var cutscene_delay_timer: Timer = $CutsceneManager/CutsceneDelayTimer
+@onready var slow_mo_timer: Timer = $WaveManager/SlowMoTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,12 +14,14 @@ func _ready() -> void:
 	EventBus.connect("wave_end", _on_wave_end)
 	EventBus.connect("cutscene_start", _start_cutscene)
 	EventBus.connect("cutscene_end", _on_cutscene_end)
+	EventBus.connect("slow_time", _on_slow_time)
+	Engine.time_scale = 1.0
 	_start_cutscene()
 
 func _start_wave() -> void:
 	wave_manager.start_wave(GameManager.current_story_event)
-	hud.set_max_hearts(player.MAX_HEALTH)
-	player.health = player.MAX_HEALTH
+	hud.set_max_hearts(player.stats.max_health)
+	player.stats.health = player.stats.max_health
 	await get_tree().process_frame
 	hud.visible = true
 
@@ -34,3 +37,9 @@ func _on_cutscene_end() -> void:
 
 func _on_wave_end() -> void:
 	EventBus.emit_signal("cutscene_start")
+
+func _on_slow_time(slow_time : float, duration : float) -> void:
+	Engine.time_scale = slow_time
+	slow_mo_timer.start(duration)
+	await slow_mo_timer.timeout
+	Engine.time_scale = 1.0

@@ -11,10 +11,10 @@ var hearts_list : Array[TextureRect]
 func _ready() -> void:
 	if !player:
 		player = get_tree().get_first_node_in_group("player")
-	set_max_hearts(player.MAX_HEALTH)
+	set_max_hearts(player.stats.max_health)
 
 func _process(delta: float) -> void:
-	update_hearts(player.get_health())
+	update_hearts(player.stats.health)
 
 func set_max_hearts(max_hearts : int) -> void:
 	for child in health_bar.get_children():

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bixy7vhwh12a1"]
 
 [ext_resource type="Script" uid="uid://1odx7l7jfai7" path="res://Scripts/Objects/enemy.gd" id="1_hn8a1"]
-[ext_resource type="Resource" uid="uid://ke6bxpf02nq4" path="res://Resources/Stats/basic_enemy.tres" id="2_y5xve"]
+[ext_resource type="Resource" uid="uid://ke6bxpf02nq4" path="res://Resources/Stats/runner_stats.tres" id="2_y5xve"]
 [ext_resource type="Texture2D" uid="uid://clqc577hc7fxh" path="res://Graphics/Characters/sprite_enemy_lolli.png" id="3_hn8a1"]
 [ext_resource type="PackedScene" uid="uid://bwyviu5nv8hh" path="res://Scenes/Components/take_damage_box.tscn" id="4_w3cqj"]
 [ext_resource type="Script" uid="uid://bu5qonx66myey" path="res://Scripts/Components/deal_damage_box.gd" id="5_1go4f"]
@@ -197,7 +197,7 @@ _data = {
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_hn8a1")
-enemy_stats = ExtResource("2_y5xve")
+stats = ExtResource("2_y5xve")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1578816072]
 texture = ExtResource("3_hn8a1")
@@ -215,7 +215,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="Shape" type="CollisionShape2D" parent="DetectArea" unique_id=1252251998]
-position = Vector2(0, -4)
+position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_y5xve")
 
 [node name="TakeDamageBox" parent="." unique_id=278541483 node_paths=PackedStringArray("parent") instance=ExtResource("4_w3cqj")]
@@ -226,10 +226,11 @@ parent = NodePath("..")
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_8ypxt")
 
-[node name="DealDamageBox" type="Area2D" parent="." unique_id=1742678038]
+[node name="DealDamageBox" type="Area2D" parent="." unique_id=1742678038 node_paths=PackedStringArray("parent")]
 collision_layer = 64
 collision_mask = 32
 script = ExtResource("5_1go4f")
+parent = NodePath("..")
 metadata/_custom_type_script = "uid://bu5qonx66myey"
 
 [node name="Shape" type="CollisionShape2D" parent="DealDamageBox" unique_id=1527766981]

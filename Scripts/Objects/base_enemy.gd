@@ -4,6 +4,9 @@ class_name BaseEnemy
 extends CharacterBody2D
 
 ## Base Enemy Class that other enemies inherit
+##
+## Enemies share certain traits and behaviours from which they
+## take from this class, no meant to be used directly.
 
 enum EnemyState {CHASE, ATTACK, HIT}
 const HIT_PARTICLES = preload("uid://drgkhnopj5ci0")
@@ -37,6 +40,8 @@ func _physics_process(delta: float) -> void:
 
 # Public
 
+## Function to take damage, calls the _die() function when healthh is
+## less than or equal to zero
 func take_damage(damage_amount : float) -> void:
 	if health >= 0:
 		health -= damage_amount
