@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://dhnfed0gjaehd"]
 
 [ext_resource type="Script" uid="uid://cbxnr7jndrsyq" path="res://Scripts/Objects/enemy_charger.gd" id="1_bqp3m"]
+[ext_resource type="Resource" uid="uid://6dw45t4u8v2b" path="res://Resources/Stats/charger_stats.tres" id="2_fbbn4"]
 
 [node name="EnemyCharger" type="CharacterBody2D" unique_id=1628111751]
 script = ExtResource("1_bqp3m")
+stats = ExtResource("2_fbbn4")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1568310724]

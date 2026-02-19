@@ -16,10 +16,8 @@ var move_direction : Vector2
 var attack_time : float = 0.4
 var invincibility_duration : float = 1.3
 var knockback : Vector2
-var knockback_time : float
 @onready var attack_timer: Timer = $AttackTimer
 @onready var attack_buffer_timer: Timer = $AttackBufferTimer
-@onready var knockback_timer: Timer = $KnockbackTimer
 @onready var invincibility_timer: Timer = $invincibilityTimer
 @onready var take_damage_box: TakeDamageBox = $TakeDamageBox
 @onready var pivot: Node2D = $Pivot
@@ -33,7 +31,6 @@ func take_damage(damage_amount : int) -> void:
 
 func apply_knockback(direction: Vector2) -> void:
 	var knockback_force : float = 10
-	var knockback_deceleration : float = 0.7
 	velocity = direction * knockback_force
 
 func change_state(new_state : PlayerState) -> void:
@@ -42,7 +39,6 @@ func change_state(new_state : PlayerState) -> void:
 
 func _ready() -> void:
 	attack_timer.connect("timeout", _on_attack_finished)
-	knockback_timer.connect("timeout", _on_knockback_finished)
 	invincibility_timer.connect("timeout", _on_invincibility_finished)
 	take_damage_box.connect("area_entered", _on_damage_box_entered)
 	stats.health = stats.max_health
@@ -124,9 +120,6 @@ func _die() -> void:
 
 func _on_attack_finished() -> void:
 	change_state(PlayerState.FREE)
-
-func _on_knockback_finished() -> void:
-	knockback = Vector2.ZERO
 
 func _on_invincibility_finished() -> void:
 	is_invincible = false

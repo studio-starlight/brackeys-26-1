@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bhjrhyqi4piw7" path="res://Resources/Cutscene/CutsceneData.gd" id="3_c11q5"]
 [ext_resource type="Script" uid="uid://vd74rdt82yon" path="res://Resources/Cutscene/Cutscene.gd" id="3_q2try"]
 [ext_resource type="Script" uid="uid://bnkkpuj71oley" path="res://Resources/Wave Data/WaveData.gd" id="4_o86a8"]
-[ext_resource type="PackedScene" uid="uid://bixy7vhwh12a1" path="res://Scenes/Objects/basic_enemy.tscn" id="5_ce5c8"]
+[ext_resource type="PackedScene" uid="uid://bixy7vhwh12a1" path="res://Scenes/Objects/enemy_runner.tscn" id="5_ce5c8"]
 [ext_resource type="Script" uid="uid://dg44yqyt36m2x" path="res://Resources/Cutscene/CutsceneTextData.gd" id="7_xdwyp"]
 [ext_resource type="Texture2D" uid="uid://bhy3i0vrdtydc" path="res://Graphics/User Interface/sprite_textbox.png" id="8_dw2ve"]
 [ext_resource type="FontFile" uid="uid://45p1fy2s4urb" path="res://Graphics/Fonts/m5x7.ttf" id="9_8u2a7"]

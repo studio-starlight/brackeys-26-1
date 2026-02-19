@@ -1,4 +1,4 @@
-class_name Enemy
+class_name EnemyRunner
 extends CharacterBody2D
 
 #=========================================
@@ -34,9 +34,6 @@ var prepare_time : float = 0.5
 enum EnemyState {CHASE, PREPARE, ATTACK, HIT}
 var current_state : EnemyState
 
-var rng = RandomNumberGenerator.new()
-var random_number
-
 func take_damage(damage_amount) -> void:
 	stats.health -= damage_amount
 	if stats.health <= 0:
@@ -48,13 +45,16 @@ func take_damage(damage_amount) -> void:
 
 func apply_knockback(knockback_direction : Vector2) -> void:
 	var force : float = 68
-	var duration : float = 600
 	velocity = knockback_direction * force
 
-func get_circle_position(random : float) -> Vector2:
+func get_circle_position() -> Vector2:
+	var rng = RandomNumberGenerator.new()
+	var random_number
+	rng.randomize()
+	random_number = rng.randf()
 	var kill_circle_center : Vector2 = target_position
 	var radius : int = 10
-	var angle : float = random * PI * 2
+	var angle : float = random_number * PI * 2
 	var x : float = kill_circle_center.x + cos(angle) * radius
 	var y : float = kill_circle_center.y + sin(angle) * radius
 	return Vector2(x,y)
@@ -70,13 +70,10 @@ func _ready() -> void:
 	detect_area.connect("body_entered", _on_detection_entered)
 	detect_area.connect("body_exited", _on_detection_exited)
 	take_damage_box.connect("area_entered", _on_damage_box_entered)
+	stats = stats.duplicate()
 	stats.health = stats.max_health
 	player = get_tree().get_first_node_in_group("player")
-	
-	rng.randomize()
-	
-	random_number = rng.randf()
-	target_position = get_circle_position(random_number)
+	target_position = get_circle_position()
 
 func _physics_process(delta: float) -> void:
 	match current_state:
@@ -88,8 +85,6 @@ func _physics_process(delta: float) -> void:
 			_attack()
 		EnemyState.HIT:
 			_hit(delta)
-	if player_is_in_range && current_state == EnemyState.CHASE:
-		current_state = EnemyState.PREPARE
 	_handle_animation()
 
 func _die() -> void:
@@ -100,10 +95,14 @@ func _die() -> void:
 	queue_free()
 
 func _chase() -> void:
-	var circle_position = get_circle_position(random_number)
+	var circle_position = get_circle_position()
 	target_position = player.global_position
 	move_direction = (circle_position - global_position).normalized()
 	velocity = move_direction * stats.speed
+	
+	if player_is_in_range:
+		current_state = EnemyState.PREPARE
+	
 	move_and_slide()
 
 func _attack() -> void:
@@ -165,7 +164,7 @@ func _on_detection_exited(body : Node2D) -> void:
 func _on_damage_box_entered(area : DealDamageBox) -> void:
 	var hit_particles = HIT_PARTICLES.instantiate()
 	var damage_direction = (global_position - area.global_position).normalized()
-	hit_particles.rotation = get_angle_to(damage_direction) + PI
+	hit_particles.rotation = atan2(-damage_direction.x, -damage_direction.y)
 	hit_particles.emitting = true
 	hit_animator.call_deferred("play", "hit")
 	hit_timer.start(hit_time)

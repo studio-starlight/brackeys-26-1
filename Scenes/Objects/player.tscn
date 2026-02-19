@@ -300,7 +300,7 @@ script = ExtResource("1_4qkr3")
 stats = ExtResource("2_dfgsd")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1103317088]
-position = Vector2(0, -16)
+position = Vector2(0, -10)
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=549954537]
 texture = ExtResource("2_picsy")
