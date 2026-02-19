@@ -10,6 +10,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	TransitionManager.play_transition("slide_enter")
 	EventBus.connect("wave_start", _start_wave)
 	EventBus.connect("wave_end", _on_wave_end)
 	EventBus.connect("cutscene_start", _start_cutscene)

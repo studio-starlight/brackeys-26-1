@@ -7,10 +7,10 @@ extends CharacterBody2D
 const HIT_PARTICLES = preload("uid://drgkhnopj5ci0")
 const DEATH_PARTICLES = preload("uid://btalbe5bl7hqm")
 @onready var take_damage_box: TakeDamageBox = $TakeDamageBox
-@onready var knockback_timer: Timer = $KnockbackTimer
 @onready var attack_timer: Timer = $AttackTimer
 @onready var hit_timer: Timer = $HitTimer
 @onready var prepare_timer: Timer = $PrepareTimer
+@onready var death_timer: Timer = $DeathTimer
 @onready var animator: AnimationPlayer = $Animator
 @onready var hit_animator: AnimationPlayer = $HitAnimator
 @onready var detect_area: Area2D = $DetectArea
@@ -19,7 +19,6 @@ const DEATH_PARTICLES = preload("uid://btalbe5bl7hqm")
 var hit_time : float = 1.0
 var attack_speed : float = 110
 var attack_time : float = 0.2
-var health : float
 var move_direction : Vector2
 var knockback : Vector2
 var knockback_time : float
@@ -39,18 +38,18 @@ var rng = RandomNumberGenerator.new()
 var random_number
 
 func take_damage(damage_amount) -> void:
-	health -= damage_amount
-	if health <= 0:
+	stats.health -= damage_amount
+	if stats.health <= 0:
+		var delay_before_death : float = 0.3
+		EventBus.emit_signal("enemy_defeated")
+		death_timer.start(delay_before_death)
+		await death_timer.timeout
 		_die()
 
-func apply_knockback(source_position : Vector2) -> void:
-	var force : float = 180
-	var duration : float = 0.2
-	knockback = global_position - source_position
-	knockback = knockback.normalized() * force
-	knockback_time = duration
-	knockback_timer.start(knockback_time)
-	is_knockback = true
+func apply_knockback(knockback_direction : Vector2) -> void:
+	var force : float = 68
+	var duration : float = 600
+	velocity = knockback_direction * force
 
 func get_circle_position(random : float) -> Vector2:
 	var kill_circle_center : Vector2 = target_position
@@ -65,14 +64,13 @@ func change_state(new_state : EnemyState) -> void:
 	current_state = new_state
 
 func _ready() -> void:
-	knockback_timer.connect("timeout", _on_knockback_finished)
 	hit_timer.connect("timeout", _on_hit_finished)
 	attack_timer.connect("timeout", _on_attack_finished)
 	prepare_timer.connect("timeout", _on_prepare_finished)
 	detect_area.connect("body_entered", _on_detection_entered)
 	detect_area.connect("body_exited", _on_detection_exited)
 	take_damage_box.connect("area_entered", _on_damage_box_entered)
-	health = stats.max_health
+	stats.health = stats.max_health
 	player = get_tree().get_first_node_in_group("player")
 	
 	rng.randomize()
@@ -89,13 +87,12 @@ func _physics_process(delta: float) -> void:
 		EnemyState.ATTACK:
 			_attack()
 		EnemyState.HIT:
-			_hit()
+			_hit(delta)
 	if player_is_in_range && current_state == EnemyState.CHASE:
 		current_state = EnemyState.PREPARE
 	_handle_animation()
 
 func _die() -> void:
-	EventBus.emit_signal("enemy_defeated")
 	var death_particles = DEATH_PARTICLES.instantiate()
 	death_particles.global_position = global_position
 	death_particles.emitting = true
@@ -103,10 +100,9 @@ func _die() -> void:
 	queue_free()
 
 func _chase() -> void:
-	target_position = player.global_position
 	var circle_position = get_circle_position(random_number)
-	move_direction = circle_position - global_position
-	move_direction = move_direction.normalized()
+	target_position = player.global_position
+	move_direction = (circle_position - global_position).normalized()
 	velocity = move_direction * stats.speed
 	move_and_slide()
 
@@ -127,8 +123,10 @@ func _prepare() -> void:
 		prepare_timer.start(prepare_time)
 	target_position = player.global_position
 
-func _hit() -> void:
-	_handle_knockback()
+func _hit(delta : float) -> void:
+	var lerp_weight : float = 5.6
+	velocity = lerp(velocity, Vector2.ZERO, lerp_weight * delta)
+	move_and_slide()
 
 func _handle_animation() -> void:
 	if move_direction.x > 0 && !facing_right:
@@ -143,24 +141,18 @@ func _handle_animation() -> void:
 		EnemyState.HIT:
 			animator.play("hit")
 
-func _handle_knockback() -> void:
-	velocity = knockback
-	move_and_slide()
-
-func _on_knockback_finished() -> void:
-	is_knockback = false
-	knockback = Vector2.ZERO
-
 func _on_hit_finished() -> void:
 	change_state(EnemyState.CHASE)
 
 func _on_attack_finished() -> void:
 	is_attacking = false
-	change_state(EnemyState.CHASE)
+	if current_state == EnemyState.ATTACK:
+		change_state(EnemyState.CHASE)
 
 func _on_prepare_finished() -> void:
 	is_preparing = false
-	current_state = EnemyState.ATTACK
+	if current_state == EnemyState.PREPARE:
+		change_state(EnemyState.ATTACK)
 
 func _on_detection_entered(body : Node2D) -> void:
 	if body is Player:
@@ -172,11 +164,12 @@ func _on_detection_exited(body : Node2D) -> void:
 
 func _on_damage_box_entered(area : DealDamageBox) -> void:
 	var hit_particles = HIT_PARTICLES.instantiate()
-	var damage_direction = global_position - area.global_position
+	var damage_direction = (global_position - area.global_position).normalized()
 	hit_particles.rotation = get_angle_to(damage_direction) + PI
 	hit_particles.emitting = true
 	hit_animator.call_deferred("play", "hit")
 	hit_timer.start(hit_time)
 	change_state(EnemyState.HIT)
 	take_damage(area.attack)
+	apply_knockback(damage_direction)
 	add_child(hit_particles)

@@ -249,6 +249,11 @@ one_shot = true
 [node name="PrepareTimer" type="Timer" parent="." unique_id=1383394750]
 one_shot = true
 
+[node name="StunTimer" type="Timer" parent="." unique_id=763473409]
+
+[node name="DeathTimer" type="Timer" parent="." unique_id=142017724]
+one_shot = true
+
 [node name="HitAnimator" type="AnimationPlayer" parent="." unique_id=18915734]
 libraries/ = SubResource("AnimationLibrary_0g2vl")
 

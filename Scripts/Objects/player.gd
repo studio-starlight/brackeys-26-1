@@ -6,7 +6,7 @@ extends CharacterBody2D
 ## The Player Controller takes input, manages the player state, and
 ## executes certain behaviours depending on states and conditions
 
-enum PlayerState {FREE, ATTACKING, HIT}
+enum PlayerState {FREE, ATTACKING, HIT, DEATH}
 @export var stats : Stats
 var current_state : PlayerState
 var disabled : bool = false
@@ -34,7 +34,7 @@ func take_damage(damage_amount : int) -> void:
 func apply_knockback(direction: Vector2) -> void:
 	var knockback_force : float = 10
 	var knockback_deceleration : float = 0.7
-	velocity = velocity.move_toward(direction * knockback_force, knockback_deceleration)
+	velocity = direction * knockback_force
 
 func change_state(new_state : PlayerState) -> void:
 	var previous_state = current_state
@@ -55,7 +55,7 @@ func _physics_process(_delta: float) -> void:
 		PlayerState.FREE:
 			_free_state()
 		PlayerState.ATTACKING:
-			_attacking_state()
+			_attacking_state(_delta)
 		PlayerState.HIT:
 			_hit_state()
 	_handle_animation()
@@ -67,8 +67,10 @@ func _free_state() -> void:
 	_handle_movement()
 	_handle_attack()
 
-func _attacking_state() -> void:
-	pass
+func _attacking_state(delta : float) -> void:
+	var lerp_weight : float = 6.7
+	velocity = velocity.lerp(Vector2.ZERO, lerp_weight * delta)
+	move_and_slide()
 
 func _hit_state() -> void:
 	move_and_slide()
@@ -78,7 +80,7 @@ func _hit_state() -> void:
 func _handle_movement() -> void:
 	move_direction = Input.get_vector("left", "right", "up", "down")
 	move_direction = move_direction.normalized()
-	velocity = move_direction * _calculate_speed()
+	velocity = move_direction * stats.speed
 	move_and_slide()
 
 func _handle_face_direction() -> void:
@@ -89,6 +91,9 @@ func _handle_face_direction() -> void:
 
 func _handle_attack() -> void:
 	if Input.is_action_pressed("attack"):
+		var lunge_direction : Vector2 = (get_global_mouse_position() - global_position).normalized()
+		var lunge_strength : float = 30
+		velocity = lunge_direction * lunge_strength
 		animator.play("attack")
 		change_state(PlayerState.ATTACKING)
 
@@ -112,11 +117,10 @@ func _spawn_attack() -> void:
 	get_parent().add_child(new_attack)
 
 func _die() -> void:
-	get_tree().call_deferred("reload_current_scene")
-
-func _calculate_speed() -> float:
-	var speed : float = stats.speed
-	return speed
+	change_state(PlayerState.DEATH)
+	animator.call_deferred("play", "death")
+	await animator.animation_finished
+	TransitionManager.play_transition("slide_exit", "res://Scenes/Levels/game.tscn")
 
 func _on_attack_finished() -> void:
 	change_state(PlayerState.FREE)
@@ -134,7 +138,7 @@ func _on_damage_box_entered(area : DealDamageBox) -> void:
 		EventBus.emit_signal("slow_time", 0.5, 0.25)
 		is_invincible = true
 		invincibility_timer.start(invincibility_duration)
-		hit_animator.play("hit")
+		hit_animator.call_deferred("play", "hit")
 		take_damage(area.attack)
 		apply_knockback(knockback_direction)
 		
