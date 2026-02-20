@@ -164,7 +164,7 @@ func _on_detection_exited(body : Node2D) -> void:
 func _on_damage_box_entered(area : DealDamageBox) -> void:
 	var hit_particles = HIT_PARTICLES.instantiate()
 	var damage_direction = (global_position - area.global_position).normalized()
-	hit_particles.rotation = atan2(-damage_direction.x, -damage_direction.y)
+	hit_particles.rotation = damage_direction.angle()
 	hit_particles.emitting = true
 	hit_animator.call_deferred("play", "hit")
 	hit_timer.start(hit_time)

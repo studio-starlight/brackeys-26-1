@@ -17,7 +17,12 @@ func _ready() -> void:
 	EventBus.connect("cutscene_end", _on_cutscene_end)
 	EventBus.connect("slow_time", _on_slow_time)
 	Engine.time_scale = 1.0
-	_start_cutscene()
+	if GameManager.current_story_event == GameManager.StoryEvent.START:
+		_start_cutscene()
+	else:
+		cutscene_delay_timer.start(delay_between_cutscenes)
+		await cutscene_delay_timer.timeout
+		EventBus.emit_signal("wave_start")
 
 func _start_wave() -> void:
 	wave_manager.start_wave(GameManager.current_story_event)

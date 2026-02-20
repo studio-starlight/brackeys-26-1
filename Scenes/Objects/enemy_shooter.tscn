@@ -1,0 +1,212 @@
+[gd_scene format=3 uid="uid://btm63jdl3vwm6"]
+
+[ext_resource type="Script" uid="uid://q32my0d6l6sl" path="res://Scripts/Objects/enemy_shooter.gd" id="1_ivl5l"]
+[ext_resource type="Resource" uid="uid://dkw4ehrp061py" path="res://Resources/Stats/shooter_stats.tres" id="2_2ma1m"]
+[ext_resource type="Texture2D" uid="uid://b4a8cas170bo0" path="res://Graphics/Characters/sprite_shooter.png" id="2_e0ymf"]
+[ext_resource type="Script" uid="uid://dknrmjdgi8unx" path="res://Scripts/Components/take_damage_box.gd" id="3_2ma1m"]
+[ext_resource type="Script" uid="uid://bu5qonx66myey" path="res://Scripts/Components/deal_damage_box.gd" id="4_ivv8v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqpq5"]
+size = Vector2(10, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vmcx"]
+size = Vector2(12, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dabct"]
+size = Vector2(6, 3)
+
+[sub_resource type="Animation" id="Animation_bqpq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_e0ymf"]
+resource_name = "attack"
+length = 1.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [18, 19, 18, 19, 18, 19]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.25, 0.3, 0.35000002, 0.6, 0.65000004, 0.70000005, 0.75, 1, 1.05, 1.1, 1.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -16), Vector2(4, -16), Vector2(-4, -16), Vector2(1, -16), Vector2(0, -16), Vector2(4, -16), Vector2(-4, -16), Vector2(1, -16), Vector2(0, -16), Vector2(4, -16), Vector2(-4, -16), Vector2(1, -16), Vector2(0, -16)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"spawn_bullet"
+}, {
+"args": [],
+"method": &"spawn_bullet"
+}, {
+"args": [],
+"method": &"spawn_bullet"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2ma1m"]
+resource_name = "hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_ivv8v"]
+resource_name = "idle"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4vmcx"]
+resource_name = "run"
+length = 0.9
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14285715, 0.2857143, 0.42857146, 0.5714286, 0.71428573),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bqpq5"]
+_data = {
+&"RESET": SubResource("Animation_bqpq5"),
+&"attack": SubResource("Animation_e0ymf"),
+&"hit": SubResource("Animation_2ma1m"),
+&"idle": SubResource("Animation_ivv8v"),
+&"run": SubResource("Animation_4vmcx")
+}
+
+[node name="EnemyShooter" type="CharacterBody2D" unique_id=2109261148 node_paths=PackedStringArray("sprite", "take_damage_box", "death_timer", "stun_timer")]
+script = ExtResource("1_ivl5l")
+stats = ExtResource("2_2ma1m")
+sprite = NodePath("Sprite")
+take_damage_box = NodePath("TakeDamageBox")
+death_timer = NodePath("DeathTimer")
+stun_timer = NodePath("StunTimer")
+
+[node name="Pivot" type="Marker2D" parent="." unique_id=1291053577]
+visible = false
+position = Vector2(0, -5)
+gizmo_extents = 0.1
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=633589976]
+texture = ExtResource("2_e0ymf")
+offset = Vector2(0, -16)
+hframes = 6
+vframes = 4
+
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=1921849333]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_bqpq5")
+
+[node name="TakeDamageBox" type="Area2D" parent="." unique_id=1622741755 node_paths=PackedStringArray("parent")]
+collision_layer = 128
+collision_mask = 16
+script = ExtResource("3_2ma1m")
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://dknrmjdgi8unx"
+
+[node name="Shape" type="CollisionShape2D" parent="TakeDamageBox" unique_id=1750045510]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_4vmcx")
+
+[node name="DealDamageBox" type="Area2D" parent="." unique_id=254716742 node_paths=PackedStringArray("parent")]
+collision_layer = 64
+collision_mask = 32
+script = ExtResource("4_ivv8v")
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://bu5qonx66myey"
+
+[node name="Shape" type="CollisionShape2D" parent="DealDamageBox" unique_id=300201427]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_dabct")
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=1310760463]
+libraries/ = SubResource("AnimationLibrary_bqpq5")
+
+[node name="DeathTimer" type="Timer" parent="." unique_id=2121907854]
+one_shot = true
+
+[node name="StunTimer" type="Timer" parent="." unique_id=710965182]
+one_shot = true
+
+[node name="ChaseTimer" type="Timer" parent="." unique_id=304465367]
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=345924654]
+one_shot = true

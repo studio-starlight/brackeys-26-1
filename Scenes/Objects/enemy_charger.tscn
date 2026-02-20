@@ -2,9 +2,161 @@
 
 [ext_resource type="Script" uid="uid://cbxnr7jndrsyq" path="res://Scripts/Objects/enemy_charger.gd" id="1_bqp3m"]
 [ext_resource type="Resource" uid="uid://6dw45t4u8v2b" path="res://Resources/Stats/charger_stats.tres" id="2_fbbn4"]
+[ext_resource type="Texture2D" uid="uid://bqgplu72o2upc" path="res://Graphics/Characters/sprite_charger.png" id="3_3kwje"]
+[ext_resource type="PackedScene" uid="uid://bwyviu5nv8hh" path="res://Scenes/Components/take_damage_box.tscn" id="4_ky4ro"]
+[ext_resource type="PackedScene" uid="uid://dvxvrmwuiddp7" path="res://Scenes/Components/deal_damage_box.tscn" id="5_t0l78"]
 
-[node name="EnemyCharger" type="CharacterBody2D" unique_id=1628111751]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vsae5"]
+size = Vector2(9, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6kupx"]
+size = Vector2(11, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mbr7"]
+size = Vector2(3, 7)
+
+[sub_resource type="Animation" id="Animation_y2bh4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_e1qr1"]
+resource_name = "charge"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_ravxm"]
+resource_name = "hit"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_3knie"]
+resource_name = "idle"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jg3rd"]
+resource_name = "run"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6kodi"]
+_data = {
+&"RESET": SubResource("Animation_y2bh4"),
+&"attack": SubResource("Animation_e1qr1"),
+&"hit": SubResource("Animation_ravxm"),
+&"idle": SubResource("Animation_3knie"),
+&"run": SubResource("Animation_jg3rd")
+}
+
+[node name="EnemyCharger" type="CharacterBody2D" unique_id=1628111751 node_paths=PackedStringArray("sprite", "take_damage_box", "death_timer", "stun_timer")]
+collision_layer = 4
 script = ExtResource("1_bqp3m")
+charge_speed = 120.0
+acceleration = 0.75
 stats = ExtResource("2_fbbn4")
+sprite = NodePath("Sprite")
+take_damage_box = NodePath("TakeDamageBox")
+death_timer = NodePath("DeathTimer")
+stun_timer = NodePath("StunTimer")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1568310724]
+texture = ExtResource("3_3kwje")
+offset = Vector2(0, -16)
+hframes = 6
+vframes = 4
+
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=1076000768]
+position = Vector2(0.5, -4)
+shape = SubResource("RectangleShape2D_vsae5")
+
+[node name="TakeDamageBox" parent="." unique_id=278541483 node_paths=PackedStringArray("parent") instance=ExtResource("4_ky4ro")]
+collision_layer = 128
+parent = NodePath("..")
+
+[node name="Shape" type="CollisionShape2D" parent="TakeDamageBox" unique_id=2086321628]
+position = Vector2(0.5, -5)
+shape = SubResource("RectangleShape2D_6kupx")
+
+[node name="DealDamageBox" parent="." unique_id=2073182161 node_paths=PackedStringArray("parent") instance=ExtResource("5_t0l78")]
+collision_layer = 64
+collision_mask = 32
+parent = NodePath("..")
+
+[node name="Shape" type="CollisionShape2D" parent="DealDamageBox" unique_id=17943212]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_2mbr7")
+debug_color = Color(0.7705125, 0.055696294, 0.22036561, 0.41960785)
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=124596067]
+libraries/ = SubResource("AnimationLibrary_6kodi")
+
+[node name="DeathTimer" type="Timer" parent="." unique_id=208019652]
+one_shot = true
+
+[node name="StunTimer" type="Timer" parent="." unique_id=257000912]
+one_shot = true
+
+[node name="ChaseTimer" type="Timer" parent="." unique_id=1879341116]
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=2013382528]

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cmdm3upt1sk6t"]
+
+[ext_resource type="Script" uid="uid://b2e0geifbri6y" path="res://Scripts/Objects/bullet.gd" id="1_hbw2t"]
+[ext_resource type="Texture2D" uid="uid://d3xk3xsbdey3q" path="res://Graphics/Effects/sprite_bullet.png" id="2_di161"]
+[ext_resource type="Script" uid="uid://bu5qonx66myey" path="res://Scripts/Components/deal_damage_box.gd" id="3_xfiki"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xqv3d"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hbw2t"]
+radius = 1.0
+
+[node name="Bullet" type="Node2D" unique_id=1229723800]
+script = ExtResource("1_hbw2t")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1687435378]
+texture = ExtResource("2_di161")
+
+[node name="DealDamageBox" type="Area2D" parent="." unique_id=266658991]
+collision_layer = 64
+collision_mask = 16
+script = ExtResource("3_xfiki")
+metadata/_custom_type_script = "uid://bu5qonx66myey"
+
+[node name="Shape" type="CollisionShape2D" parent="DealDamageBox" unique_id=1733905763]
+shape = SubResource("CircleShape2D_xqv3d")
+
+[node name="DetectArea" type="Area2D" parent="." unique_id=327339043]
+collision_layer = 0
+collision_mask = 19
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="DetectArea" unique_id=1243288754]
+shape = SubResource("CircleShape2D_hbw2t")
+
+[node name="DestroyTimer" type="Timer" parent="." unique_id=97661328]
+one_shot = true

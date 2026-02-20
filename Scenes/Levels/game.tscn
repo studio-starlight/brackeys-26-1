@@ -14,8 +14,10 @@
 [ext_resource type="FontFile" uid="uid://45p1fy2s4urb" path="res://Graphics/Fonts/m5x7.ttf" id="9_8u2a7"]
 [ext_resource type="Script" uid="uid://ddkoy6vp3mmqo" path="res://Scripts/Systems/hud.gd" id="10_q2try"]
 [ext_resource type="Texture2D" uid="uid://vlvfe3oe2u8p" path="res://Graphics/Enviornments/sprite_background.png" id="11_xdwyp"]
+[ext_resource type="PackedScene" uid="uid://btm63jdl3vwm6" path="res://Scenes/Objects/enemy_shooter.tscn" id="12_3jpjc"]
 [ext_resource type="Script" uid="uid://bar5ud07elybb" path="res://Scripts/Systems/pause_manager.gd" id="13_8u2a7"]
 [ext_resource type="Texture2D" uid="uid://cx4u4kpk7j5jl" path="res://Graphics/User Interface/sprite_pausebox.png" id="14_e8oij"]
+[ext_resource type="PackedScene" uid="uid://dhnfed0gjaehd" path="res://Scenes/Objects/enemy_charger.tscn" id="14_x1q52"]
 [ext_resource type="Theme" uid="uid://ba3ofuhdx02cr" path="res://Resources/Themes/main_theme.tres" id="15_gqwak"]
 
 [sub_resource type="Resource" id="Resource_ahqd5"]
@@ -50,9 +52,9 @@ metadata/_custom_type_script = "uid://vd74rdt82yon"
 
 [sub_resource type="Resource" id="Resource_c11q5"]
 script = ExtResource("4_o86a8")
-enemy_types = Array[PackedScene]([ExtResource("5_ce5c8")])
-enemy_count = 20
-enemy_delay = 2.0
+enemy_types = Array[PackedScene]([ExtResource("12_3jpjc"), ExtResource("5_ce5c8"), ExtResource("14_x1q52")])
+enemy_count = 18
+enemy_delay = 3.4
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_3jpjc"]

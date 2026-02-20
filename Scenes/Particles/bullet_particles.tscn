@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b4c8mesmi7k0f"]
+
+[ext_resource type="Texture2D" uid="uid://d3xk3xsbdey3q" path="res://Graphics/Effects/sprite_bullet.png" id="1_k0abl"]
+[ext_resource type="Script" uid="uid://boj3c1ugq5k78" path="res://Scenes/Particles/particles.gd" id="2_dkrr8"]
+
+[sub_resource type="Curve" id="Curve_dkrr8"]
+_data = [Vector2(0.006651886, 1), 0.0, 0.0, 0, 0, Vector2(0.4855876, 0.1765939), -1.0634866, -1.0634866, 0, 0, Vector2(0.9800443, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xiial"]
+curve = SubResource("Curve_dkrr8")
+
+[sub_resource type="Curve" id="Curve_8my5s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_f3rxe"]
+curve = SubResource("Curve_8my5s")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yr0c6"]
+particle_flag_disable_z = true
+orbit_velocity_min = 0.48300013
+orbit_velocity_max = 0.5320001
+radial_velocity_min = 59.049976
+radial_velocity_max = 70.33997
+radial_velocity_curve = SubResource("CurveTexture_xiial")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_f3rxe")
+
+[node name="BulletParticles" type="GPUParticles2D" unique_id=1583956669]
+emitting = false
+texture = ExtResource("1_k0abl")
+one_shot = true
+explosiveness = 0.85
+randomness = 0.73
+process_material = SubResource("ParticleProcessMaterial_yr0c6")
+script = ExtResource("2_dkrr8")

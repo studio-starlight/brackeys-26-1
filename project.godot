@@ -14,7 +14,6 @@ config/name="Brackeys26-1"
 run/main_scene="uid://cx045meyetxtm"
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=30
-config/icon="res://icon.svg"
 
 [audio]
 
@@ -47,6 +46,15 @@ window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
+
+[file_customization]
+
+folder_colors={
+"res://Graphics/": "orange",
+"res://Resources/": "yellow",
+"res://Scenes/": "green",
+"res://Scripts/": "blue"
+}
 
 [global_group]
 
