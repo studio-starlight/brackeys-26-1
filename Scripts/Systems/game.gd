@@ -7,6 +7,7 @@ extends Node2D
 @onready var player: Player = $Player
 @onready var cutscene_delay_timer: Timer = $CutsceneManager/CutsceneDelayTimer
 @onready var slow_mo_timer: Timer = $WaveManager/SlowMoTimer
+@onready var player_cutsene_marker: Node2D = $CutsceneManager/PlayerCutseneMarker
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,6 +18,7 @@ func _ready() -> void:
 	EventBus.connect("cutscene_end", _on_cutscene_end)
 	EventBus.connect("slow_time", _on_slow_time)
 	Engine.time_scale = 1.0
+	hud.visible = false
 	if GameManager.current_story_event == GameManager.StoryEvent.START:
 		_start_cutscene()
 	else:
@@ -33,6 +35,9 @@ func _start_wave() -> void:
 
 func _start_cutscene() -> void:
 	hud.visible = false
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(player, "global_position", player_cutsene_marker.global_position, 1.0)
+	player.facing_right = true
 	cutscene_manager.start_cutscene(GameManager.current_story_event)
 
 func _on_cutscene_end() -> void:

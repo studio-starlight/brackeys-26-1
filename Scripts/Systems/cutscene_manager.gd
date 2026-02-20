@@ -6,6 +6,7 @@ extends Node2D
 @onready var dialogue: TextureRect = $Dialogue
 @onready var dialogue_sound_player: AudioStreamPlayer = $DialogueSoundPlayer
 @onready var dialogue_text: RichTextLabel = $Dialogue/Margins/DialogueText
+@onready var speaker_sprite: Sprite2D = $Dialogue/Speaker/SpeakerSprite
 
 @export var cutscenes: Array[Cutscene]
 var current_cutscene : Cutscene
@@ -59,7 +60,10 @@ func _process(delta: float) -> void:
 		var i = current_cutscene.cutscene_data[current_item]
 		
 		if i is CutsceneAnimationData:
-			dialogue.visible = false
+			if i.hide_dialogue_box:
+				dialogue.visible = false
+			else:
+				dialogue.visible = true
 			_start_animation(i)
 		elif i is CutsceneTextData:
 			dialogue.visible = true
@@ -71,16 +75,25 @@ func _process(delta: float) -> void:
 
 func _start_animation(i : CutsceneAnimationData) -> void:
 	cutscene_animator.play(i.animation_name)
-	var signal_state = {"done": false}
-	var callable = func(_args): signal_state.done = true
-	cutscene_animator.connect("animation_finished", callable, CONNECT_ONE_SHOT)
-	while not signal_state.done:
-		await get_tree().process_frame
+	if i.wait_for_animation_finished:
+		var signal_state = {"done": false}
+		var callable = func(_args): signal_state.done = true
+		cutscene_animator.connect("animation_finished", callable, CONNECT_ONE_SHOT)
+		while not signal_state.done:
+			await get_tree().process_frame
 	current_item += 1
 	next_item = true
 func _start_dialogue(i : CutsceneTextData) -> void:
 	if not is_inside_tree():
 		return
+	if !i.speaker_img:
+		speaker_sprite.visible = false
+	else:
+		speaker_sprite.visible = true
+		speaker_sprite.texture = i.speaker_img
+		speaker_sprite.hframes = i.speaker_img_Hframes
+		speaker_sprite.frame = 0
+	
 	dialogue_text.visible_characters = 0
 	dialogue_text.text = i.text
 	var text_without_square_brackets: String = _text_without_square_brackets(i.text)
@@ -99,7 +112,11 @@ func _start_dialogue(i : CutsceneTextData) -> void:
 			if character != " ":
 				dialogue_sound_player.pitch_scale = randf_range(i.text_volume_pitch_min,i.text_volume_pitch_max)
 				dialogue_sound_player.play()
-				
+				if i.speaker_img_Hframes != 1:
+					if speaker_sprite.frame < i.speaker_img_Hframes - 1:
+						speaker_sprite.frame += 1
+					else:
+						speaker_sprite.frame = 0
 			character_timer = 0.0
 		await get_tree().process_frame
 	

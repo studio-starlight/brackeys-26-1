@@ -8,6 +8,10 @@ process_mode = 3
 z_index = 2000
 script = ExtResource("1_usn21")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1429717152]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=356710931]
+layer = 200
+
+[node name="Sprite" type="Sprite2D" parent="CanvasLayer" unique_id=1429717152]
 process_mode = 3
+z_index = 4096
 texture = ExtResource("2_qm0gp")

@@ -33,7 +33,11 @@ func _resume() -> void:
 	visible = false
 
 func _main_menu() -> void:
+	resume.disabled = true
+	main_menu.disabled = true
+	quit.disabled = true
 	AudioManager.play_sound(AudioManager.SOUND_BUTTON_CLICK)
+	TransitionManager.play_transition("slide_exit", "res://Scenes/Levels/main_menu.tscn")
 
 func _quit() -> void:
 	AudioManager.play_sound(AudioManager.SOUND_BUTTON_CLICK)

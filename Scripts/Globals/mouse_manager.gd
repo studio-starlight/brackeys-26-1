@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: Sprite2D = $CanvasLayer/Sprite
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN

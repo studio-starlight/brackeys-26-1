@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 enum PlayerState {FREE, ATTACKING, HIT, DEATH}
 @export var stats : Stats
+const RUN_PARTICLES = preload("uid://bjb870yd5o3nw")
 var current_state : PlayerState
 var disabled : bool = false
 var is_invincible : bool = false
@@ -34,6 +35,10 @@ func apply_knockback(direction: Vector2) -> void:
 	velocity = direction * knockback_force
 
 func play_footstep() -> void:
+	var run_particles := RUN_PARTICLES.instantiate()
+	run_particles.global_position = global_position
+	run_particles.emitting = true
+	get_tree().current_scene.add_child(run_particles)
 	AudioManager.play_sound(AudioManager.SOUND_FOOTSTEP, 0.04)
 
 func change_state(new_state : PlayerState) -> void:
@@ -49,6 +54,10 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if disabled:
 		animator.play("idle")
+		if facing_right:
+			$Sprite.flip_h = false
+		else:
+			$Sprite.flip_h = true
 		return
 	match current_state:
 		PlayerState.FREE:

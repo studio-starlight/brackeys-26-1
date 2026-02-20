@@ -9,11 +9,15 @@
 [ext_resource type="Script" uid="uid://vd74rdt82yon" path="res://Resources/Cutscene/Cutscene.gd" id="3_q2try"]
 [ext_resource type="Script" uid="uid://bnkkpuj71oley" path="res://Resources/Wave Data/WaveData.gd" id="4_o86a8"]
 [ext_resource type="PackedScene" uid="uid://bixy7vhwh12a1" path="res://Scenes/Objects/enemy_runner.tscn" id="5_ce5c8"]
+[ext_resource type="Script" uid="uid://csb4hvs2xwugx" path="res://Resources/Cutscene/CutsceneAnimationData.gd" id="7_ht0kt"]
 [ext_resource type="Script" uid="uid://dg44yqyt36m2x" path="res://Resources/Cutscene/CutsceneTextData.gd" id="7_xdwyp"]
 [ext_resource type="Texture2D" uid="uid://bhy3i0vrdtydc" path="res://Graphics/User Interface/sprite_textbox.png" id="8_dw2ve"]
+[ext_resource type="Texture2D" uid="uid://ibveqrn4nbsu" path="res://Graphics/User Interface/sprite_talking.png" id="8_t7urq"]
 [ext_resource type="FontFile" uid="uid://45p1fy2s4urb" path="res://Graphics/Fonts/m5x7.ttf" id="9_8u2a7"]
 [ext_resource type="Script" uid="uid://ddkoy6vp3mmqo" path="res://Scripts/Systems/hud.gd" id="10_q2try"]
 [ext_resource type="AudioStream" uid="uid://lutgg5ejxcum" path="res://Audio/Sounds/sound_dialogue.wav" id="10_qmmh8"]
+[ext_resource type="Texture2D" uid="uid://cmc84m685p481" path="res://Graphics/Characters/sprite_cane.png" id="10_rar5s"]
+[ext_resource type="Texture2D" uid="uid://d3xk3xsbdey3q" path="res://Graphics/Effects/sprite_bullet.png" id="11_i0w65"]
 [ext_resource type="Texture2D" uid="uid://vlvfe3oe2u8p" path="res://Graphics/Enviornments/sprite_background.png" id="11_xdwyp"]
 [ext_resource type="PackedScene" uid="uid://btm63jdl3vwm6" path="res://Scenes/Objects/enemy_shooter.tscn" id="12_3jpjc"]
 [ext_resource type="Script" uid="uid://bar5ud07elybb" path="res://Scripts/Systems/pause_manager.gd" id="13_8u2a7"]
@@ -21,19 +25,44 @@
 [ext_resource type="PackedScene" uid="uid://dhnfed0gjaehd" path="res://Scenes/Objects/enemy_charger.tscn" id="14_x1q52"]
 [ext_resource type="Theme" uid="uid://ba3ofuhdx02cr" path="res://Resources/Themes/main_theme.tres" id="15_gqwak"]
 
+[sub_resource type="Resource" id="Resource_rfqhp"]
+script = ExtResource("7_ht0kt")
+animation_name = "beginning"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
+[sub_resource type="Resource" id="Resource_uy6f3"]
+script = ExtResource("7_ht0kt")
+animation_name = "cane_poof_enter"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
 [sub_resource type="Resource" id="Resource_ahqd5"]
 script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
 text = "Hey, this is the first cutscene!"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_dw2ve"]
 script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
 text = "I'll now start the first wave of enemies!"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
+[sub_resource type="Resource" id="Resource_ht0kt"]
+script = ExtResource("7_ht0kt")
+animation_name = "cane_poof_exit"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
 [sub_resource type="Resource" id="Resource_8u2a7"]
 script = ExtResource("3_q2try")
-cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_ahqd5"), SubResource("Resource_dw2ve")])
+cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_rfqhp"), SubResource("Resource_uy6f3"), SubResource("Resource_ahqd5"), SubResource("Resource_dw2ve"), SubResource("Resource_ht0kt")])
 metadata/_custom_type_script = "uid://vd74rdt82yon"
 
 [sub_resource type="Resource" id="Resource_xdwyp"]
@@ -51,10 +80,132 @@ script = ExtResource("3_q2try")
 cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_xdwyp"), SubResource("Resource_e8oij")])
 metadata/_custom_type_script = "uid://vd74rdt82yon"
 
+[sub_resource type="Animation" id="Animation_l1e6r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanePoofParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CaneSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_cppk6"]
+resource_name = "beginning"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CaneSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_17vb1"]
+resource_name = "cane_poof_enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanePoofParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CaneSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ht0kt"]
+resource_name = "cane_poof_exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CaneSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanePoofParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kv0vm"]
+_data = {
+&"RESET": SubResource("Animation_l1e6r"),
+&"beginning": SubResource("Animation_cppk6"),
+&"cane_poof_enter": SubResource("Animation_17vb1"),
+&"cane_poof_exit": SubResource("Animation_ht0kt")
+}
+
+[sub_resource type="Curve" id="Curve_7d2jk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2j1fn"]
+curve = SubResource("Curve_7d2jk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y13qf"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 20.0
+initial_velocity_min = 83.85
+initial_velocity_max = 98.159996
+angular_velocity_min = 161.95998
+angular_velocity_max = 197.29997
+gravity = Vector3(0, 200, 0)
+scale_curve = SubResource("CurveTexture_2j1fn")
+
 [sub_resource type="Resource" id="Resource_c11q5"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("12_3jpjc"), ExtResource("5_ce5c8"), ExtResource("14_x1q52")])
-enemy_count = 18
+enemy_count = 6
 enemy_delay = 3.4
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
@@ -76,7 +227,7 @@ y_sort_enabled = true
 script = ExtResource("1_yla1s")
 
 [node name="Player" parent="." unique_id=451226399 groups=["player"] instance=ExtResource("1_ds3o4")]
-position = Vector2(160, 104)
+position = Vector2(128, 120)
 
 [node name="Camera" type="Camera2D" parent="." unique_id=588206387]
 anchor_mode = 0
@@ -87,22 +238,58 @@ script = ExtResource("1_72uep")
 cutscenes = Array[ExtResource("3_q2try")]([SubResource("Resource_8u2a7"), SubResource("Resource_gqwak")])
 
 [node name="CutsceneAnimator" type="AnimationPlayer" parent="CutsceneManager" unique_id=1919605278]
+libraries/ = SubResource("AnimationLibrary_kv0vm")
+
+[node name="CaneSprite" type="Sprite2D" parent="CutsceneManager" unique_id=679931058]
+position = Vector2(192, 120)
+texture = ExtResource("10_rar5s")
+offset = Vector2(0.5, -9.5)
+flip_h = true
+
+[node name="CanePoofParticles" type="GPUParticles2D" parent="CutsceneManager" unique_id=676334953]
+position = Vector2(192, 120)
+emitting = false
+texture = ExtResource("11_i0w65")
+one_shot = true
+explosiveness = 0.88
+randomness = 0.94
+process_material = SubResource("ParticleProcessMaterial_y13qf")
 
 [node name="CutsceneDelayTimer" type="Timer" parent="CutsceneManager" unique_id=1107802549]
 
 [node name="Dialogue" type="TextureRect" parent="CutsceneManager" unique_id=250755429]
 visible = false
 z_index = 1000
-offset_left = 64.0
-offset_top = 128.0
-offset_right = 250.0
-offset_bottom = 170.0
+offset_top = 112.0
+offset_right = 320.0
+offset_bottom = 180.0
 texture = ExtResource("8_dw2ve")
+
+[node name="Speaker" type="Control" parent="CutsceneManager/Dialogue" unique_id=129228589]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -116.0
+offset_right = -72.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SpeakerSprite" type="Sprite2D" parent="CutsceneManager/Dialogue/Speaker" unique_id=219369283]
+position = Vector2(28, 16)
+texture = ExtResource("8_t7urq")
+hframes = 2
 
 [node name="Margins" type="MarginContainer" parent="CutsceneManager/Dialogue" unique_id=1077631019]
 layout_mode = 0
-offset_right = 184.0
-offset_bottom = 40.0
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 264.0
+offset_bottom = 64.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -110,7 +297,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="DialogueText" type="RichTextLabel" parent="CutsceneManager/Dialogue/Margins" unique_id=1504743246]
 layout_mode = 2
-theme_override_colors/default_color = Color(0.8509804, 0.5254902, 0.3647059, 1)
+theme_override_colors/default_color = Color(0.2, 0.22745098, 0.49803922, 1)
 theme_override_fonts/normal_font = ExtResource("9_8u2a7")
 bbcode_enabled = true
 text = "This is example of dialogue and it is very cool"
@@ -119,6 +306,9 @@ scroll_active = false
 
 [node name="DialogueSoundPlayer" type="AudioStreamPlayer" parent="CutsceneManager" unique_id=1043341082]
 stream = ExtResource("10_qmmh8")
+
+[node name="PlayerCutseneMarker" type="Node2D" parent="CutsceneManager" unique_id=679162759]
+position = Vector2(128, 120)
 
 [node name="WaveManager" type="Node2D" parent="." unique_id=961727658]
 script = ExtResource("2_b2ers")

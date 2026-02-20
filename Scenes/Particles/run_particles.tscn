@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bjb870yd5o3nw"]
+
+[ext_resource type="Texture2D" uid="uid://d3xk3xsbdey3q" path="res://Graphics/Effects/sprite_bullet.png" id="1_ewvmi"]
+[ext_resource type="Script" uid="uid://boj3c1ugq5k78" path="res://Scenes/Particles/particles.gd" id="2_2gesf"]
+
+[sub_resource type="Curve" id="Curve_061tb"]
+_data = [Vector2(0.0022172965, 0.3074664), 0.0, 0.0, 0, 0, Vector2(0.99113077, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sn1lq"]
+curve = SubResource("Curve_061tb")
+
+[sub_resource type="Curve" id="Curve_xi64b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99334806, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nrl35"]
+curve = SubResource("Curve_xi64b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7augg"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5.25, 5.78, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_nrl35")
+alpha_curve = SubResource("CurveTexture_sn1lq")
+
+[node name="RunParticles" type="GPUParticles2D" unique_id=703200193]
+emitting = false
+amount = 5
+texture = ExtResource("1_ewvmi")
+one_shot = true
+explosiveness = 0.77
+randomness = 0.85
+process_material = SubResource("ParticleProcessMaterial_7augg")
+script = ExtResource("2_2gesf")

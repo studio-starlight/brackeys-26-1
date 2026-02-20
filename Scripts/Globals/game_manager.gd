@@ -23,6 +23,9 @@ enum GameState {
 }
 var current_game_state : GameState
 
+func reset_story() -> void:
+	current_story_event = StoryEvent.START
+
 func advance_story_event() -> void:
 	if current_story_event < StoryEvent.ENDING:
 		current_story_event += 1

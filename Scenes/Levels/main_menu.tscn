@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://8hlm8vbwf1ef"]
+
+[ext_resource type="Script" uid="uid://5e8voyb8lc0s" path="res://Scripts/Systems/main_menu.gd" id="1_wmo1h"]
+[ext_resource type="Texture2D" uid="uid://b5lkg0wxhgb04" path="res://Graphics/User Interface/sprite_blue.png" id="2_gnv55"]
+[ext_resource type="Texture2D" uid="uid://cgy6cysovnlb3" path="res://Graphics/User Interface/sprite_title.png" id="3_b7svq"]
+[ext_resource type="Theme" uid="uid://ba3ofuhdx02cr" path="res://Resources/Themes/main_theme.tres" id="4_wnywc"]
+[ext_resource type="FontFile" uid="uid://45p1fy2s4urb" path="res://Graphics/Fonts/m5x7.ttf" id="5_6yab0"]
+
+[sub_resource type="Animation" id="Animation_wmo1h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_gnv55"]
+resource_name = "title"
+length = 10.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(16, 24), Vector2(16, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b7svq"]
+_data = {
+&"RESET": SubResource("Animation_wmo1h"),
+&"title": SubResource("Animation_gnv55")
+}
+
+[node name="MainMenu" type="Node2D" unique_id=1596749829]
+script = ExtResource("1_wmo1h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=308487207]
+
+[node name="Background" type="TextureRect" parent="CanvasLayer" unique_id=1187901031]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_gnv55")
+
+[node name="Title" type="TextureRect" parent="CanvasLayer" unique_id=1530647029]
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 301.0
+offset_bottom = 88.0
+texture = ExtResource("3_b7svq")
+
+[node name="PauseButtons" type="VBoxContainer" parent="CanvasLayer" unique_id=1038325556]
+offset_left = 112.0
+offset_top = 96.0
+offset_right = 202.0
+offset_bottom = 168.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Play" type="Button" parent="CanvasLayer/PauseButtons" unique_id=1123509424]
+layout_mode = 2
+theme = ExtResource("4_wnywc")
+theme_override_fonts/font = ExtResource("5_6yab0")
+text = "Play"
+flat = true
+
+[node name="Controls" type="Button" parent="CanvasLayer/PauseButtons" unique_id=2011377014]
+layout_mode = 2
+theme = ExtResource("4_wnywc")
+text = "Controls"
+flat = true
+
+[node name="Quit" type="Button" parent="CanvasLayer/PauseButtons" unique_id=1238668949]
+layout_mode = 2
+theme = ExtResource("4_wnywc")
+text = "Quit"
+flat = true
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=234764405]
+libraries/ = SubResource("AnimationLibrary_b7svq")

@@ -131,6 +131,7 @@ _data = {
 }
 
 [node name="TransitionManager" type="CanvasLayer" unique_id=1604412950]
+process_mode = 3
 script = ExtResource("1_nbl4n")
 
 [node name="Animator" type="AnimationPlayer" parent="." unique_id=673728928]
@@ -146,4 +147,4 @@ offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.07058824, 0.13333334, 0.1882353, 1)
+color = Color(0.2, 0.22745098, 0.49803922, 1)
