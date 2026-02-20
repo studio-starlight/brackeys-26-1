@@ -41,5 +41,6 @@ func _on_detect(body : Node2D) -> void:
 	new_particles.global_position = global_position
 	new_particles.emitting = true
 	is_destroyed = true
+	AudioManager.play_sound(AudioManager.SOUND_BULLET_DESTROY)
 	get_tree().current_scene.add_child(new_particles)
 	queue_free()

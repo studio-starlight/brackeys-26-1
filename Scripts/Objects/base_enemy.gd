@@ -51,6 +51,7 @@ func _physics_process(delta: float) -> void:
 ## Function to take damage, calls the _die() function when healthh is
 ## less than or equal to zero
 func take_damage(damage_amount : float) -> void:
+	AudioManager.play_sound(AudioManager.SOUND_ATTACK_HIT)
 	stats.health -= damage_amount
 	if stats.health <= 0:
 		var delay_before_death : float = 0.5
@@ -108,6 +109,7 @@ func _die() -> void:
 	var death_particles = DEATH_PARTICLES.instantiate()
 	death_particles.global_position = global_position
 	death_particles.emitting = true
+	AudioManager.play_sound(AudioManager.SOUND_ENEMY_DEFEATED)
 	get_parent().add_child(death_particles)
 	queue_free()
 

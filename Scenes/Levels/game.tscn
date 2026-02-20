@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bhy3i0vrdtydc" path="res://Graphics/User Interface/sprite_textbox.png" id="8_dw2ve"]
 [ext_resource type="FontFile" uid="uid://45p1fy2s4urb" path="res://Graphics/Fonts/m5x7.ttf" id="9_8u2a7"]
 [ext_resource type="Script" uid="uid://ddkoy6vp3mmqo" path="res://Scripts/Systems/hud.gd" id="10_q2try"]
+[ext_resource type="AudioStream" uid="uid://lutgg5ejxcum" path="res://Audio/Sounds/sound_dialogue.wav" id="10_qmmh8"]
 [ext_resource type="Texture2D" uid="uid://vlvfe3oe2u8p" path="res://Graphics/Enviornments/sprite_background.png" id="11_xdwyp"]
 [ext_resource type="PackedScene" uid="uid://btm63jdl3vwm6" path="res://Scenes/Objects/enemy_shooter.tscn" id="12_3jpjc"]
 [ext_resource type="Script" uid="uid://bar5ud07elybb" path="res://Scripts/Systems/pause_manager.gd" id="13_8u2a7"]
@@ -117,6 +118,7 @@ fit_content = true
 scroll_active = false
 
 [node name="DialogueSoundPlayer" type="AudioStreamPlayer" parent="CutsceneManager" unique_id=1043341082]
+stream = ExtResource("10_qmmh8")
 
 [node name="WaveManager" type="Node2D" parent="." unique_id=961727658]
 script = ExtResource("2_b2ers")

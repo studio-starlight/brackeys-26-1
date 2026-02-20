@@ -33,6 +33,9 @@ func apply_knockback(direction: Vector2) -> void:
 	var knockback_force : float = 10
 	velocity = direction * knockback_force
 
+func play_footstep() -> void:
+	AudioManager.play_sound(AudioManager.SOUND_FOOTSTEP, 0.04)
+
 func change_state(new_state : PlayerState) -> void:
 	var previous_state = current_state
 	current_state = new_state
@@ -109,6 +112,7 @@ func _handle_animation() -> void:
 
 func _spawn_attack() -> void:
 	var new_attack = Attack.new_attack(pivot.global_position, stats.attack)
+	AudioManager.play_sound(AudioManager.SOUND_SWING)
 	attack_timer.start(attack_time)
 	get_parent().add_child(new_attack)
 
@@ -127,6 +131,7 @@ func _on_invincibility_finished() -> void:
 func _on_damage_box_entered(area : DealDamageBox) -> void:
 	if !is_invincible:
 		var knockback_direction = global_position - area.global_position
+		AudioManager.play_sound(AudioManager.SOUND_PLAYER_HURT)
 		EventBus.emit_signal("shake_camera", 10, 5)
 		EventBus.emit_signal("slow_time", 0.5, 0.25)
 		is_invincible = true

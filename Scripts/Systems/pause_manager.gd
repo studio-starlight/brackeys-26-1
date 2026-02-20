@@ -9,23 +9,32 @@ func _ready() -> void:
 	resume.connect("pressed", _resume)
 	main_menu.connect("pressed", _main_menu)
 	quit.connect("pressed", _quit)
+	resume.mouse_entered.connect(_button_hovered)
+	main_menu.mouse_entered.connect(_button_hovered)
+	quit.mouse_entered.connect(_button_hovered)
 	if !player:
 		get_tree().get_first_node_in_group("player")
+
+func _button_hovered() -> void:
+	AudioManager.play_sound(AudioManager.SOUND_BUTTON_HOVER)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("escape") && !player.disabled:
 		_pause()
 
 func _pause() -> void:
+	AudioManager.play_sound(AudioManager.SOUND_BUTTON_CLICK)
 	get_tree().paused = true
 	visible = true
 
 func _resume() -> void:
+	AudioManager.play_sound(AudioManager.SOUND_BUTTON_CLICK)
 	get_tree().paused = false
 	visible = false
 
 func _main_menu() -> void:
-	pass
+	AudioManager.play_sound(AudioManager.SOUND_BUTTON_CLICK)
 
 func _quit() -> void:
+	AudioManager.play_sound(AudioManager.SOUND_BUTTON_CLICK)
 	get_tree().quit()

@@ -91,6 +91,7 @@ func _die() -> void:
 	var death_particles = DEATH_PARTICLES.instantiate()
 	death_particles.global_position = global_position
 	death_particles.emitting = true
+	AudioManager.play_sound(AudioManager.SOUND_ENEMY_DEFEATED)
 	get_parent().add_child(death_particles)
 	queue_free()
 
@@ -162,6 +163,7 @@ func _on_detection_exited(body : Node2D) -> void:
 		player_is_in_range = false
 
 func _on_damage_box_entered(area : DealDamageBox) -> void:
+	AudioManager.play_sound(AudioManager.SOUND_ATTACK_HIT)
 	var hit_particles = HIT_PARTICLES.instantiate()
 	var damage_direction = (global_position - area.global_position).normalized()
 	hit_particles.rotation = damage_direction.angle()

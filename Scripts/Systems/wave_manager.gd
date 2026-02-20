@@ -40,6 +40,7 @@ func start_wave(current_story_event : GameManager.StoryEvent) -> void:
 		new_enemy.global_position = spawn_point.global_position
 		new_spawn_particles.global_position = spawn_point.global_position
 		new_spawn_particles.emitting = true
+		AudioManager.play_sound(AudioManager.SOUND_SPAWN_ENEMY)
 		get_parent().add_child(new_enemy)
 		get_parent().add_child(new_spawn_particles)
 		enemy_spawn_timer.start(current_wave_data.enemy_delay)
@@ -47,6 +48,7 @@ func start_wave(current_story_event : GameManager.StoryEvent) -> void:
 
 func end_wave() -> void:
 	EventBus.emit_signal("shake_camera", 7, 3)
+	AudioManager.play_sound(AudioManager.SOUND_WAVE_END)
 	Engine.time_scale = slow_mo_scale
 	slow_mo_timer.start(slow_mo_time)
 	await slow_mo_timer.timeout

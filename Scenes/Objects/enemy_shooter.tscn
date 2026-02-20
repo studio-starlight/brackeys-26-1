@@ -152,6 +152,7 @@ _data = {
 }
 
 [node name="EnemyShooter" type="CharacterBody2D" unique_id=2109261148 node_paths=PackedStringArray("sprite", "take_damage_box", "death_timer", "stun_timer")]
+collision_layer = 4
 script = ExtResource("1_ivl5l")
 stats = ExtResource("2_2ma1m")
 sprite = NodePath("Sprite")

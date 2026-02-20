@@ -15,6 +15,7 @@ func _ready() -> void:
 
 func spawn_bullet() -> void:
 	var new_bullet = Bullet.new_bullet(pivot.global_position, player.global_position, stats.attack)
+	AudioManager.play_sound(AudioManager.SOUND_SHOOT)
 	get_parent().add_child(new_bullet)
 
 func _chase() -> void:
