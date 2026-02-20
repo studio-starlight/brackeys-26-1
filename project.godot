@@ -23,10 +23,11 @@ buses/default_bus_layout="uid://b0gn5lm5qb86n"
 
 Util="*uid://ban41oqgkaxbw"
 AudioManager="*uid://ci35iw40xqglw"
+MusicManager="*uid://bumer4mu0p7b2"
 EventBus="*uid://c23vhjno0g6ja"
 GameManager="*uid://biryacyitnndi"
-MouseManager="*uid://bog88b1lqkkea"
 TransitionManager="*uid://cpuyxi8nook61"
+MouseManager="*uid://bog88b1lqkkea"
 
 [debug]
 

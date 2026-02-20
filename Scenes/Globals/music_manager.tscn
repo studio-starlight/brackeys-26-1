@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bumer4mu0p7b2"]
+
+[ext_resource type="Script" uid="uid://ejvq2vmyuxmq" path="res://Scripts/Globals/music_manager.gd" id="1_eghl4"]
+
+[node name="MusicManager" type="Node" unique_id=2087753501]
+process_mode = 3
+script = ExtResource("1_eghl4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=684850073]
+bus = &"Music"

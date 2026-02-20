@@ -3,6 +3,7 @@ extends Node2D
 @export var delay_between_cutscenes : float = 1.0
 @onready var cutscene_manager: CutsceneManager = $CutsceneManager
 @onready var wave_manager: WaveManager = $WaveManager
+@onready var upgrade_manager: Node2D = $UpgradeManager
 @onready var hud: HUD = $HUD
 @onready var player: Player = $Player
 @onready var cutscene_delay_timer: Timer = $CutsceneManager/CutsceneDelayTimer
@@ -19,6 +20,7 @@ func _ready() -> void:
 	EventBus.connect("slow_time", _on_slow_time)
 	Engine.time_scale = 1.0
 	hud.visible = false
+	upgrade_manager.setup_upgrades()
 	if GameManager.current_story_event == GameManager.StoryEvent.START:
 		_start_cutscene()
 	else:
@@ -27,6 +29,7 @@ func _ready() -> void:
 		EventBus.emit_signal("wave_start")
 
 func _start_wave() -> void:
+	MusicManager.play_music(MusicManager.MUSIC_BATTLE)
 	wave_manager.start_wave(GameManager.current_story_event)
 	hud.set_max_hearts(player.stats.max_health)
 	player.stats.health = player.stats.max_health

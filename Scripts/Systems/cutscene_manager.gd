@@ -19,7 +19,6 @@ var is_active : bool = false
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	dialogue.visible = false
-	
 
 func start_cutscene(current_story_scene : GameManager.StoryEvent) -> void:
 	match current_story_scene:

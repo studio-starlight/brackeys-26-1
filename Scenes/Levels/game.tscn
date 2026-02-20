@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bhy3i0vrdtydc" path="res://Graphics/User Interface/sprite_textbox.png" id="8_dw2ve"]
 [ext_resource type="Texture2D" uid="uid://ibveqrn4nbsu" path="res://Graphics/User Interface/sprite_talking.png" id="8_t7urq"]
 [ext_resource type="FontFile" uid="uid://45p1fy2s4urb" path="res://Graphics/Fonts/m5x7.ttf" id="9_8u2a7"]
+[ext_resource type="AudioStream" uid="uid://ehdpp6r3prkq" path="res://Audio/Sounds/sound_enemy_defeated.wav" id="10_i0w65"]
 [ext_resource type="Script" uid="uid://ddkoy6vp3mmqo" path="res://Scripts/Systems/hud.gd" id="10_q2try"]
 [ext_resource type="AudioStream" uid="uid://lutgg5ejxcum" path="res://Audio/Sounds/sound_dialogue.wav" id="10_qmmh8"]
 [ext_resource type="Texture2D" uid="uid://cmc84m685p481" path="res://Graphics/Characters/sprite_cane.png" id="10_rar5s"]
@@ -25,6 +26,11 @@
 [ext_resource type="PackedScene" uid="uid://dhnfed0gjaehd" path="res://Scenes/Objects/enemy_charger.tscn" id="14_x1q52"]
 [ext_resource type="Theme" uid="uid://ba3ofuhdx02cr" path="res://Resources/Themes/main_theme.tres" id="15_gqwak"]
 [ext_resource type="Script" uid="uid://85pv8b7m5k0s" path="res://Scenes/Systems/upgrade_manager.gd" id="24_rar5s"]
+[ext_resource type="Script" uid="uid://cjjqrbvu6qkhv" path="res://Resources/Upgrades/upgrade_data.gd" id="26_cppk6"]
+[ext_resource type="Script" uid="uid://qa1djvfk32rq" path="res://Resources/Upgrades/attack_upgrade.gd" id="27_17vb1"]
+[ext_resource type="Script" uid="uid://cimhbka2wqc48" path="res://Resources/Upgrades/health_upgrade.gd" id="28_kv0vm"]
+[ext_resource type="Script" uid="uid://d1lltcsjhjowv" path="res://Resources/Upgrades/speed_upgrade.gd" id="29_7d2jk"]
+[ext_resource type="Script" uid="uid://bwlmktm7xm282" path="res://Scripts/Objects/upgrade_button.gd" id="30_17vb1"]
 
 [sub_resource type="Resource" id="Resource_rfqhp"]
 script = ExtResource("7_ht0kt")
@@ -66,19 +72,45 @@ script = ExtResource("3_q2try")
 cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_rfqhp"), SubResource("Resource_uy6f3"), SubResource("Resource_ahqd5"), SubResource("Resource_dw2ve"), SubResource("Resource_ht0kt")])
 metadata/_custom_type_script = "uid://vd74rdt82yon"
 
+[sub_resource type="Resource" id="Resource_l1e6r"]
+script = ExtResource("7_ht0kt")
+animation_name = "beginning"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
+[sub_resource type="Resource" id="Resource_i0w65"]
+script = ExtResource("7_ht0kt")
+animation_name = "cane_poof_enter"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
 [sub_resource type="Resource" id="Resource_xdwyp"]
 script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
 text = "Wow, you cleared the wave!"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_e8oij"]
 script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
 text = "Onto the next Wave!"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
+[sub_resource type="Resource" id="Resource_cppk6"]
+script = ExtResource("7_ht0kt")
+animation_name = "cane_poof_exit"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
 [sub_resource type="Resource" id="Resource_gqwak"]
 script = ExtResource("3_q2try")
-cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_xdwyp"), SubResource("Resource_e8oij")])
+cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_l1e6r"), SubResource("Resource_i0w65"), SubResource("Resource_xdwyp"), SubResource("Resource_e8oij"), SubResource("Resource_cppk6")])
 metadata/_custom_type_script = "uid://vd74rdt82yon"
 
 [sub_resource type="Animation" id="Animation_l1e6r"]
@@ -105,7 +137,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_cppk6"]
@@ -149,6 +181,32 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SoundEffectPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_i0w65")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SoundEffectPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ht0kt"]
 resource_name = "cane_poof_exit"
@@ -176,6 +234,21 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SoundEffectPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_i0w65")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kv0vm"]
 _data = {
@@ -184,6 +257,13 @@ _data = {
 &"cane_poof_enter": SubResource("Animation_17vb1"),
 &"cane_poof_exit": SubResource("Animation_ht0kt")
 }
+
+[sub_resource type="Curve" id="Curve_i0w65"]
+_data = [Vector2(0.013303768, 1), 0.0, 0.0, 0, 0, Vector2(0.68070954, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rfqhp"]
+curve = SubResource("Curve_i0w65")
 
 [sub_resource type="Curve" id="Curve_7d2jk"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -194,13 +274,16 @@ curve = SubResource("Curve_7d2jk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y13qf"]
 particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-spread = 20.0
-initial_velocity_min = 83.85
-initial_velocity_max = 98.159996
 angular_velocity_min = 161.95998
 angular_velocity_max = 197.29997
-gravity = Vector3(0, 200, 0)
+orbit_velocity_min = 0.3760001
+orbit_velocity_max = 0.3760001
+radial_velocity_min = 69.529976
+radial_velocity_max = 94.06998
+radial_velocity_curve = SubResource("CurveTexture_rfqhp")
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0899997
+scale_max = 5.0899997
 scale_curve = SubResource("CurveTexture_2j1fn")
 
 [sub_resource type="Resource" id="Resource_c11q5"]
@@ -223,6 +306,24 @@ _data = {
 }
 point_count = 9
 
+[sub_resource type="Resource" id="Resource_17vb1"]
+script = ExtResource("27_17vb1")
+name = "Attack"
+description = "Boosts Attack by 25%"
+metadata/_custom_type_script = "uid://qa1djvfk32rq"
+
+[sub_resource type="Resource" id="Resource_kv0vm"]
+script = ExtResource("28_kv0vm")
+name = "Health"
+description = "Adds 1 Extra Life to Max Health"
+metadata/_custom_type_script = "uid://cimhbka2wqc48"
+
+[sub_resource type="Resource" id="Resource_7d2jk"]
+script = ExtResource("29_7d2jk")
+name = "Speed"
+description = "Boosts Speed by 35%"
+metadata/_custom_type_script = "uid://d1lltcsjhjowv"
+
 [node name="Game" type="Node2D" unique_id=794865982]
 y_sort_enabled = true
 script = ExtResource("1_yla1s")
@@ -238,19 +339,24 @@ script = ExtResource("3_7l4mf")
 script = ExtResource("1_72uep")
 cutscenes = Array[ExtResource("3_q2try")]([SubResource("Resource_8u2a7"), SubResource("Resource_gqwak")])
 
+[node name="SoundEffectPlayer" type="AudioStreamPlayer" parent="CutsceneManager" unique_id=269904706]
+max_polyphony = 5
+
 [node name="CutsceneAnimator" type="AnimationPlayer" parent="CutsceneManager" unique_id=1919605278]
 libraries/ = SubResource("AnimationLibrary_kv0vm")
 
 [node name="CaneSprite" type="Sprite2D" parent="CutsceneManager" unique_id=679931058]
+visible = false
 position = Vector2(192, 120)
 texture = ExtResource("10_rar5s")
 offset = Vector2(0.5, -9.5)
 flip_h = true
 
 [node name="CanePoofParticles" type="GPUParticles2D" parent="CutsceneManager" unique_id=676334953]
-position = Vector2(192, 120)
+position = Vector2(192, 112)
 emitting = false
 texture = ExtResource("11_i0w65")
+lifetime = 0.6
 one_shot = true
 explosiveness = 0.88
 randomness = 0.94
@@ -400,24 +506,80 @@ polygon = PackedVector2Array(32, 64, 16, 80, 16, 160, 32, 176, 288, 176, 304, 16
 
 [node name="UpgradeManager" type="Node2D" parent="." unique_id=1803625167]
 script = ExtResource("24_rar5s")
+upgrades = Array[ExtResource("26_cppk6")]([SubResource("Resource_17vb1"), SubResource("Resource_kv0vm"), SubResource("Resource_7d2jk")])
 
 [node name="Upgrades" type="HBoxContainer" parent="UpgradeManager" unique_id=81638564]
-offset_left = 24.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
 offset_top = 40.0
-offset_right = 296.0
-offset_bottom = 80.0
+offset_right = 300.0
+offset_bottom = 140.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0)
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
 
-[node name="Upgrade1" type="Button" parent="UpgradeManager/Upgrades" unique_id=1283384684]
+[node name="Upgrade1" type="Panel" parent="UpgradeManager/Upgrades" unique_id=1723768740]
+custom_minimum_size = Vector2(96, 100)
+layout_mode = 2
+script = ExtResource("30_17vb1")
+
+[node name="UpgradeContainer" type="VBoxContainer" parent="UpgradeManager/Upgrades/Upgrade1" unique_id=2709231]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 104.0
+
+[node name="UpgradeName" type="Button" parent="UpgradeManager/Upgrades/Upgrade1/UpgradeContainer" unique_id=1283384684]
 layout_mode = 2
 text = "Upgrade 1"
 
-[node name="Upgrade2" type="Button" parent="UpgradeManager/Upgrades" unique_id=1896090948]
+[node name="UpgradeDescription" type="RichTextLabel" parent="UpgradeManager/Upgrades/Upgrade1/UpgradeContainer" unique_id=514051468]
 layout_mode = 2
-text = "Upgrade 2"
+text = "Default Description
+"
+fit_content = true
 
-[node name="Upgrade3" type="Button" parent="UpgradeManager/Upgrades" unique_id=1082183459]
+[node name="Upgrade2" type="Panel" parent="UpgradeManager/Upgrades" unique_id=95860361]
+custom_minimum_size = Vector2(96, 100)
 layout_mode = 2
-text = "Upgrade 3"
+script = ExtResource("30_17vb1")
+
+[node name="UpgradeContainer" type="VBoxContainer" parent="UpgradeManager/Upgrades/Upgrade2" unique_id=1281498875]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 104.0
+
+[node name="UpgradeName" type="Button" parent="UpgradeManager/Upgrades/Upgrade2/UpgradeContainer" unique_id=1428898756]
+layout_mode = 2
+text = "Upgrade 1"
+
+[node name="UpgradeDescription" type="RichTextLabel" parent="UpgradeManager/Upgrades/Upgrade2/UpgradeContainer" unique_id=1893026246]
+layout_mode = 2
+text = "Default Description
+"
+fit_content = true
+
+[node name="Upgrade3" type="Panel" parent="UpgradeManager/Upgrades" unique_id=1866405562]
+custom_minimum_size = Vector2(96, 100)
+layout_mode = 2
+script = ExtResource("30_17vb1")
+
+[node name="UpgradeContainer" type="VBoxContainer" parent="UpgradeManager/Upgrades/Upgrade3" unique_id=2126863589]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 104.0
+
+[node name="UpgradeName" type="Button" parent="UpgradeManager/Upgrades/Upgrade3/UpgradeContainer" unique_id=834676713]
+layout_mode = 2
+text = "Upgrade 1"
+
+[node name="UpgradeDescription" type="RichTextLabel" parent="UpgradeManager/Upgrades/Upgrade3/UpgradeContainer" unique_id=337496308]
+layout_mode = 2
+text = "Default Description
+"
+fit_content = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1819801841]
 script = ExtResource("10_q2try")

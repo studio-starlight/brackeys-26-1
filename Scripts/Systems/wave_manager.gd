@@ -30,6 +30,8 @@ func start_wave(current_story_event : GameManager.StoryEvent) -> void:
 			current_wave = 2
 		_:
 			current_wave = 1
+	if current_wave >= waves.size():
+		current_wave = 0
 	var current_wave_data = waves[current_wave]
 	enemy_count = current_wave_data.enemy_count
 	
@@ -49,6 +51,7 @@ func start_wave(current_story_event : GameManager.StoryEvent) -> void:
 func end_wave() -> void:
 	EventBus.emit_signal("shake_camera", 7, 3)
 	AudioManager.play_sound(AudioManager.SOUND_WAVE_END)
+	MusicManager.stop_music()
 	Engine.time_scale = slow_mo_scale
 	slow_mo_timer.start(slow_mo_time)
 	await slow_mo_timer.timeout
