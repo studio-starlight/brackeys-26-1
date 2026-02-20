@@ -50,6 +50,7 @@ window/stretch/mode="viewport"
 [file_customization]
 
 folder_colors={
+"res://Audio/": "red",
 "res://Graphics/": "orange",
 "res://Resources/": "yellow",
 "res://Scenes/": "green",

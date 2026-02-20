@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://cx4u4kpk7j5jl" path="res://Graphics/User Interface/sprite_pausebox.png" id="14_e8oij"]
 [ext_resource type="PackedScene" uid="uid://dhnfed0gjaehd" path="res://Scenes/Objects/enemy_charger.tscn" id="14_x1q52"]
 [ext_resource type="Theme" uid="uid://ba3ofuhdx02cr" path="res://Resources/Themes/main_theme.tres" id="15_gqwak"]
+[ext_resource type="Script" uid="uid://85pv8b7m5k0s" path="res://Scenes/Systems/upgrade_manager.gd" id="24_rar5s"]
 
 [sub_resource type="Resource" id="Resource_rfqhp"]
 script = ExtResource("7_ht0kt")
@@ -396,6 +397,27 @@ metadata/_edit_lock_ = true
 [node name="Polygon" type="CollisionPolygon2D" parent="Enviornment/Boundary" unique_id=2129355691]
 visible = false
 polygon = PackedVector2Array(32, 64, 16, 80, 16, 160, 32, 176, 288, 176, 304, 160, 304, 80, 288, 64, 32, 64, 32, 32, 288, 32, 312, 56, 312, 168, 288, 192, 32, 192, 8, 176, 8, 56, 32, 32)
+
+[node name="UpgradeManager" type="Node2D" parent="." unique_id=1803625167]
+script = ExtResource("24_rar5s")
+
+[node name="Upgrades" type="HBoxContainer" parent="UpgradeManager" unique_id=81638564]
+offset_left = 24.0
+offset_top = 40.0
+offset_right = 296.0
+offset_bottom = 80.0
+
+[node name="Upgrade1" type="Button" parent="UpgradeManager/Upgrades" unique_id=1283384684]
+layout_mode = 2
+text = "Upgrade 1"
+
+[node name="Upgrade2" type="Button" parent="UpgradeManager/Upgrades" unique_id=1896090948]
+layout_mode = 2
+text = "Upgrade 2"
+
+[node name="Upgrade3" type="Button" parent="UpgradeManager/Upgrades" unique_id=1082183459]
+layout_mode = 2
+text = "Upgrade 3"
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1819801841]
 script = ExtResource("10_q2try")
