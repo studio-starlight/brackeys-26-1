@@ -13,3 +13,5 @@ Button/styles/focus = null
 Button/styles/hover = null
 Button/styles/normal = null
 Button/styles/pressed = null
+RichTextLabel/colors/default_color = Color(0.8509804, 0.5254902, 0.3647059, 1)
+RichTextLabel/fonts/normal_font = ExtResource("1_oac4r")

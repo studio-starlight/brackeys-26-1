@@ -28,6 +28,20 @@ func start_wave(current_story_event : GameManager.StoryEvent) -> void:
 			current_wave = 1
 		GameManager.StoryEvent.WAVE3:
 			current_wave = 2
+		GameManager.StoryEvent.WAVE4:
+			current_wave = 3
+		GameManager.StoryEvent.WAVE5:
+			current_wave = 4
+		GameManager.StoryEvent.WAVE6:
+			current_wave = 5
+		GameManager.StoryEvent.WAVE7:
+			current_wave = 6
+		GameManager.StoryEvent.WAVE8:
+			current_wave = 7
+		GameManager.StoryEvent.WAVE9:
+			current_wave = 8
+		GameManager.StoryEvent.WAVE10:
+			current_wave = 9
 		_:
 			current_wave = 1
 	if current_wave >= waves.size():

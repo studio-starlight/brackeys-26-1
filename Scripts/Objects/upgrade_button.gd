@@ -1,5 +1,5 @@
 class_name UpgradeButton
-extends Panel
+extends TextureRect
 
 
 @onready var upgrade_name_button: Button = $UpgradeContainer/UpgradeName

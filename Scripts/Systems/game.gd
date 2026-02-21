@@ -46,6 +46,8 @@ func _start_cutscene() -> void:
 
 func _on_cutscene_end() -> void:
 	GameManager.advance_story_event()
+	if GameManager.get_story_event() == GameManager.StoryEvent.ENDING:
+		return
 	cutscene_delay_timer.start(delay_between_cutscenes)
 	await cutscene_delay_timer.timeout
 	EventBus.emit_signal("wave_start")
@@ -58,6 +60,7 @@ func _on_wave_end() -> void:
 
 func _on_selected_upgrade(upgrade_data : UpgradeData) -> void:
 	upgrade_manager.visible = false
+	upgrade_data.apply_upgrade(player)
 	EventBus.emit_signal("cutscene_start")
 
 func _on_slow_time(slow_time : float, duration : float) -> void:

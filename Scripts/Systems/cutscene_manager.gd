@@ -28,6 +28,22 @@ func start_cutscene(current_story_scene : GameManager.StoryEvent) -> void:
 			current_cutscene = cutscenes.get(1)
 		GameManager.StoryEvent.WAVE2:
 			current_cutscene = cutscenes.get(2)
+		GameManager.StoryEvent.WAVE3:
+			current_cutscene = cutscenes.get(3)
+		GameManager.StoryEvent.WAVE4:
+			current_cutscene = cutscenes.get(4)
+		GameManager.StoryEvent.WAVE5:
+			current_cutscene = cutscenes.get(5)
+		GameManager.StoryEvent.WAVE6:
+			current_cutscene = cutscenes.get(6)
+		GameManager.StoryEvent.WAVE7:
+			current_cutscene = cutscenes.get(7)
+		GameManager.StoryEvent.WAVE8:
+			current_cutscene = cutscenes.get(8)
+		GameManager.StoryEvent.WAVE9:
+			current_cutscene = cutscenes.get(9)
+		GameManager.StoryEvent.WAVE10:
+			current_cutscene = cutscenes.get(10)
 		_:
 			current_cutscene = cutscenes.get(cutscenes.size() - 1)
 	if current_cutscene == null:
@@ -35,56 +51,57 @@ func start_cutscene(current_story_scene : GameManager.StoryEvent) -> void:
 		current_cutscene = cutscenes.get(0)
 	current_item = 0
 	is_active = true
+	next_item = true
+	current_item = 0
 	player.disabled = true
 	dialogue_text.text = ""
 	visible = true
+	advance_cutscene()
 
 func _process(delta: float) -> void:
-	if !is_active || !is_inside_tree():
-		return
-	
+	pass
+	#if !is_active:
+		#return
+	#
+	#if next_item:
+		#next_item = false
+		#advance_cutscene()
+
+func advance_cutscene() -> void:
 	if current_item == current_cutscene.cutscene_data.size():
-		if !player:
-			player = get_tree().get_first_node_in_group("player")
-			return
-		player.disabled = false
-		EventBus.emit_signal("cutscene_end")
-		is_active = false
-		visible = false
+		finish_cutscene()
 		return
 	
-	if next_item:
-		
-		next_item = false
-		var i = current_cutscene.cutscene_data[current_item]
-		
-		if i is CutsceneAnimationData:
-			if i.hide_dialogue_box:
-				dialogue.visible = false
-			else:
-				dialogue.visible = true
-			_start_animation(i)
-		elif i is CutsceneTextData:
-			dialogue.visible = true
-			_start_dialogue(i)
+	var i = current_cutscene.cutscene_data[current_item]
+	current_item += 1
+	if i is CutsceneAnimationData:
+		if i.hide_dialogue_box:
+			dialogue.visible = false
 		else:
-			printerr("ERROR, INVALID RESOURCE!")
-			current_item += 1
-			next_item = true
+			dialogue.visible = true
+		_start_animation(i)
+	elif i is CutsceneTextData:
+		dialogue.visible = true
+		_start_dialogue(i)
+	else:
+		printerr("ERROR, INVALID RESOURCE!")
+		current_item += 1
+		next_item = true
+
+func finish_cutscene() -> void:
+	EventBus.cutscene_end.emit()
+	player.disabled = false
+	is_active = false
+	visible = false
+	next_item = false
 
 func _start_animation(i : CutsceneAnimationData) -> void:
 	cutscene_animator.play(i.animation_name)
 	if i.wait_for_animation_finished:
-		var signal_state = {"done": false}
-		var callable = func(_args): signal_state.done = true
-		cutscene_animator.connect("animation_finished", callable, CONNECT_ONE_SHOT)
-		while not signal_state.done:
-			await get_tree().process_frame
-	current_item += 1
-	next_item = true
+		await cutscene_animator.animation_finished
+	advance_cutscene()
+
 func _start_dialogue(i : CutsceneTextData) -> void:
-	if not is_inside_tree():
-		return
 	if !i.speaker_img:
 		speaker_sprite.visible = false
 	else:
@@ -119,14 +136,21 @@ func _start_dialogue(i : CutsceneTextData) -> void:
 			character_timer = 0.0
 		await get_tree().process_frame
 	
-	while true:
-		if !is_inside_tree():
-			return
+	var waiting_for_input : bool = true
+	while waiting_for_input:
 		await get_tree().process_frame
-		if dialogue_text.visible_characters == total_characters:
-			if Input.is_action_just_pressed("attack"):
-				current_item += 1
-				next_item = true
+		if Input.is_action_just_pressed("attack"):
+			waiting_for_input = false
+	advance_cutscene()
+	
+	#while true:
+		#if !is_inside_tree():
+			#return
+		#await get_tree().process_frame
+		#if dialogue_text.visible_characters == total_characters:
+			#if Input.is_action_just_pressed("attack"):
+				#current_item += 1
+				#next_item = true
 
 func _text_without_square_brackets(text: String) -> String:
 	var result : String = ""
