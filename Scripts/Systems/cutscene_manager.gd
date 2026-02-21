@@ -89,8 +89,9 @@ func advance_cutscene() -> void:
 		next_item = true
 
 func finish_cutscene() -> void:
+	if GameManager.get_story_event() == GameManager.StoryEvent.WAVE10:
+		return
 	EventBus.cutscene_end.emit()
-	player.disabled = false
 	is_active = false
 	visible = false
 	next_item = false

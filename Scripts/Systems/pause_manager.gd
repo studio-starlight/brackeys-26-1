@@ -37,6 +37,7 @@ func _main_menu() -> void:
 	main_menu.disabled = true
 	quit.disabled = true
 	AudioManager.play_sound(AudioManager.SOUND_BUTTON_CLICK)
+	MusicManager.stop_music()
 	TransitionManager.play_transition("slide_exit", "res://Scenes/Levels/main_menu.tscn")
 
 func _quit() -> void:

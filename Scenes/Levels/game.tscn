@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://cimhbka2wqc48" path="res://Resources/Upgrades/health_upgrade.gd" id="28_kv0vm"]
 [ext_resource type="Script" uid="uid://d1lltcsjhjowv" path="res://Resources/Upgrades/speed_upgrade.gd" id="29_7d2jk"]
 [ext_resource type="Script" uid="uid://bwlmktm7xm282" path="res://Scripts/Objects/upgrade_button.gd" id="30_17vb1"]
+[ext_resource type="Script" uid="uid://udfwxfwafxty" path="res://Scripts/Systems/bat_cuscene_event.gd" id="31_kv0vm"]
 
 [sub_resource type="Resource" id="Resource_rfqhp"]
 script = ExtResource("7_ht0kt")
@@ -491,7 +492,7 @@ script = ExtResource("7_xdwyp")
 speaker_img = ExtResource("8_t7urq")
 speaker_img_Hframes = 2
 speaker_img_rest_frame = 1
-text = "Fret not, However! I will ask you to return such feelings."
+text = "Fret not, However! I will nost ask you to return such feelings."
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_qrsv2"]
@@ -599,7 +600,7 @@ script = ExtResource("7_xdwyp")
 speaker_img = ExtResource("8_t7urq")
 speaker_img_Hframes = 2
 speaker_img_rest_frame = 1
-text = "Sorry, you seem a bit disspointed right now."
+text = "Sorry, you seem a bit dissapointed right now."
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_yuxgn"]
@@ -645,6 +646,13 @@ hide_dialogue_box = true
 wait_for_animation_finished = true
 metadata/_custom_type_script = "uid://csb4hvs2xwugx"
 
+[sub_resource type="Resource" id="Resource_kpl5b"]
+script = ExtResource("7_ht0kt")
+animation_name = "beginning"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
 [sub_resource type="Resource" id="Resource_2u2ur"]
 script = ExtResource("7_ht0kt")
 animation_name = "beginning"
@@ -654,7 +662,7 @@ metadata/_custom_type_script = "uid://csb4hvs2xwugx"
 
 [sub_resource type="Resource" id="Resource_tdcd7"]
 script = ExtResource("7_ht0kt")
-animation_name = "cane_poof_exit"
+animation_name = "cane_poof_enter"
 hide_dialogue_box = true
 wait_for_animation_finished = true
 metadata/_custom_type_script = "uid://csb4hvs2xwugx"
@@ -676,6 +684,9 @@ metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_6b8p2"]
 script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
 text = "..."
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
@@ -696,7 +707,7 @@ metadata/_custom_type_script = "uid://csb4hvs2xwugx"
 
 [sub_resource type="Resource" id="Resource_tkk3r"]
 script = ExtResource("3_q2try")
-cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_cx3bo"), SubResource("Resource_2u2ur"), SubResource("Resource_tdcd7"), SubResource("Resource_f16q6"), SubResource("Resource_r8yav"), SubResource("Resource_6b8p2"), SubResource("Resource_e1tlu"), SubResource("Resource_30t71")])
+cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_cx3bo"), SubResource("Resource_kpl5b"), SubResource("Resource_2u2ur"), SubResource("Resource_tdcd7"), SubResource("Resource_f16q6"), SubResource("Resource_r8yav"), SubResource("Resource_6b8p2"), SubResource("Resource_e1tlu"), SubResource("Resource_30t71")])
 metadata/_custom_type_script = "uid://vd74rdt82yon"
 
 [sub_resource type="Resource" id="Resource_0k771"]
@@ -1040,62 +1051,63 @@ scale_curve = SubResource("CurveTexture_2j1fn")
 [sub_resource type="Resource" id="Resource_c11q5"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("5_ce5c8")])
-enemy_count = 5
+enemy_count = 2
 enemy_delay = 6.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_3jpjc"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("5_ce5c8")])
-enemy_count = 8
+enemy_count = 2
 enemy_delay = 2.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_gxqav"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("5_ce5c8"), ExtResource("14_x1q52")])
-enemy_count = 10
+enemy_count = 2
 enemy_delay = 4.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_d7yfr"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("5_ce5c8"), ExtResource("14_x1q52")])
-enemy_count = 12
+enemy_count = 2
 enemy_delay = 2.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_iyrm3"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("5_ce5c8"), ExtResource("12_3jpjc")])
-enemy_count = 10
+enemy_count = 2
 enemy_delay = 3.5
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_bmorh"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("12_3jpjc"), ExtResource("5_ce5c8")])
-enemy_count = 15
+enemy_count = 2
 enemy_delay = 2.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_igpio"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("5_ce5c8"), ExtResource("12_3jpjc"), ExtResource("14_x1q52")])
-enemy_count = 15
+enemy_count = 2
 enemy_delay = 1.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_f0vdm"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("12_3jpjc")])
-enemy_count = 4
+enemy_count = 2
+enemy_delay = 1.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_iqsc7"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("14_x1q52")])
-enemy_count = 4
+enemy_count = 2
 enemy_delay = 1.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
@@ -1406,6 +1418,38 @@ flat = true
 layout_mode = 2
 text = "Default Description
 "
+fit_content = true
+horizontal_alignment = 1
+
+[node name="BatCusceneEvent" type="Node2D" parent="." unique_id=275447298]
+visible = false
+script = ExtResource("31_kv0vm")
+
+[node name="BatUpgrade" type="TextureRect" parent="BatCusceneEvent" unique_id=1280715577]
+custom_minimum_size = Vector2(96, 100)
+offset_left = 112.0
+offset_top = 40.0
+offset_right = 208.0
+offset_bottom = 140.0
+texture = ExtResource("14_e8oij")
+
+[node name="UpgradeContainer" type="VBoxContainer" parent="BatCusceneEvent/BatUpgrade" unique_id=1001477341]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 90.0
+offset_bottom = 94.0
+
+[node name="UpgradeName" type="Button" parent="BatCusceneEvent/BatUpgrade/UpgradeContainer" unique_id=1966091185]
+layout_mode = 2
+theme = ExtResource("15_gqwak")
+text = "Metal Bat"
+flat = true
+
+[node name="UpgradeDescription" type="RichTextLabel" parent="BatCusceneEvent/BatUpgrade/UpgradeContainer" unique_id=1936088801]
+layout_mode = 2
+theme = ExtResource("15_gqwak")
+text = "This could really hurt someone"
 fit_content = true
 horizontal_alignment = 1
 

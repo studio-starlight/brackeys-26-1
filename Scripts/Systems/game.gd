@@ -4,6 +4,7 @@ extends Node2D
 @onready var cutscene_manager: CutsceneManager = $CutsceneManager
 @onready var wave_manager: WaveManager = $WaveManager
 @onready var upgrade_manager: Node2D = $UpgradeManager
+@onready var bat_cuscene_event: Node2D = $BatCusceneEvent
 @onready var hud: HUD = $HUD
 @onready var player: Player = $Player
 @onready var cutscene_delay_timer: Timer = $CutsceneManager/CutsceneDelayTimer
@@ -30,7 +31,10 @@ func _ready() -> void:
 		EventBus.emit_signal("wave_start")
 
 func _start_wave() -> void:
-	MusicManager.play_music(MusicManager.MUSIC_BATTLE)
+	if GameManager.get_story_event() < GameManager.StoryEvent.WAVE7:
+		MusicManager.play_music(MusicManager.MUSIC_BATTLE)
+	else:
+		MusicManager.play_music(MusicManager.MUSIC_BATTLE, 0.75)
 	wave_manager.start_wave(GameManager.current_story_event)
 	hud.set_max_hearts(player.stats.max_health)
 	player.stats.health = player.stats.max_health
@@ -49,17 +53,23 @@ func _on_cutscene_end() -> void:
 	if GameManager.get_story_event() == GameManager.StoryEvent.ENDING:
 		return
 	cutscene_delay_timer.start(delay_between_cutscenes)
+	player.disabled = false
 	await cutscene_delay_timer.timeout
 	EventBus.emit_signal("wave_start")
 
 func _on_wave_end() -> void:
 	player.disabled = true
 	hud.visible = false
-	upgrade_manager.visible = true
-	upgrade_manager.setup_upgrades()
+	if GameManager.get_story_event() != GameManager.StoryEvent.WAVE10:
+		upgrade_manager.visible = true
+		upgrade_manager.setup_upgrades()
+	else:
+		MusicManager.play_music(MusicManager.MUSIC_SPOOKY)
+		bat_cuscene_event.visible = true
 
 func _on_selected_upgrade(upgrade_data : UpgradeData) -> void:
 	upgrade_manager.visible = false
+	bat_cuscene_event.visible = false
 	upgrade_data.apply_upgrade(player)
 	EventBus.emit_signal("cutscene_start")
 
