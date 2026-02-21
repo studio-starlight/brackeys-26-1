@@ -25,6 +25,10 @@ var knockback : Vector2
 @onready var animator: AnimationPlayer = $Animator
 @onready var hit_animator: AnimationPlayer = $HitAnimator
 
+func play_animation(animation_name : String, face_right : bool) -> void:
+	animator.play(animation_name)
+	$Sprite.flip_h = !face_right
+
 func take_damage(damage_amount : int) -> void:
 	stats.health -= damage_amount
 	if stats.health <= 0:
@@ -53,7 +57,6 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if disabled:
-		animator.play("idle")
 		if facing_right:
 			$Sprite.flip_h = false
 		else:

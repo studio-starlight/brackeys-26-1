@@ -45,8 +45,11 @@ func _start_cutscene() -> void:
 	hud.visible = false
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(player, "global_position", player_cutsene_marker.global_position, 1.0)
-	player.facing_right = true
+	player.play_animation("idle", true)
 	cutscene_manager.start_cutscene(GameManager.current_story_event)
+
+func end_game() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Levels/ending.tscn")
 
 func _on_cutscene_end() -> void:
 	GameManager.advance_story_event()

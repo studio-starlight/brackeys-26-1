@@ -118,7 +118,7 @@ func _start_dialogue(i : CutsceneTextData) -> void:
 	var character_timer: float = 0.0
 	
 	while dialogue_text.visible_characters < total_characters:
-		if Input.is_action_just_pressed("cancel"):
+		if Input.is_action_just_pressed("cancel") && i.skippable:
 			dialogue_text.visible_characters = total_characters
 			break
 		

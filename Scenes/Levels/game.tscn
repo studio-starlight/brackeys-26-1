@@ -13,18 +13,22 @@
 [ext_resource type="Script" uid="uid://dg44yqyt36m2x" path="res://Resources/Cutscene/CutsceneTextData.gd" id="7_xdwyp"]
 [ext_resource type="Texture2D" uid="uid://bhy3i0vrdtydc" path="res://Graphics/User Interface/sprite_textbox.png" id="8_dw2ve"]
 [ext_resource type="Texture2D" uid="uid://ibveqrn4nbsu" path="res://Graphics/User Interface/sprite_talking.png" id="8_t7urq"]
+[ext_resource type="Texture2D" uid="uid://62hbtibpyqmb" path="res://Graphics/Talking/sprite_cane_talking_happy.png" id="9_2j1fn"]
 [ext_resource type="FontFile" uid="uid://45p1fy2s4urb" path="res://Graphics/Fonts/m5x7.ttf" id="9_8u2a7"]
 [ext_resource type="AudioStream" uid="uid://ehdpp6r3prkq" path="res://Audio/Sounds/sound_enemy_defeated.wav" id="10_i0w65"]
 [ext_resource type="Script" uid="uid://ddkoy6vp3mmqo" path="res://Scripts/Systems/hud.gd" id="10_q2try"]
 [ext_resource type="AudioStream" uid="uid://lutgg5ejxcum" path="res://Audio/Sounds/sound_dialogue.wav" id="10_qmmh8"]
 [ext_resource type="Texture2D" uid="uid://cmc84m685p481" path="res://Graphics/Characters/sprite_cane.png" id="10_rar5s"]
+[ext_resource type="Texture2D" uid="uid://bfo61lf2ijky1" path="res://Graphics/Talking/sprite_cane_talking_normal.png" id="10_y13qf"]
 [ext_resource type="Texture2D" uid="uid://d3xk3xsbdey3q" path="res://Graphics/Effects/sprite_bullet.png" id="11_i0w65"]
+[ext_resource type="Texture2D" uid="uid://mn2xkie57p5k" path="res://Graphics/Talking/sprite_cane_talking_nervous.png" id="11_p2x0k"]
 [ext_resource type="Texture2D" uid="uid://vlvfe3oe2u8p" path="res://Graphics/Enviornments/sprite_background.png" id="11_xdwyp"]
 [ext_resource type="PackedScene" uid="uid://btm63jdl3vwm6" path="res://Scenes/Objects/enemy_shooter.tscn" id="12_3jpjc"]
 [ext_resource type="Script" uid="uid://bar5ud07elybb" path="res://Scripts/Systems/pause_manager.gd" id="13_8u2a7"]
 [ext_resource type="Texture2D" uid="uid://cx4u4kpk7j5jl" path="res://Graphics/User Interface/sprite_pausebox.png" id="14_e8oij"]
 [ext_resource type="PackedScene" uid="uid://dhnfed0gjaehd" path="res://Scenes/Objects/enemy_charger.tscn" id="14_x1q52"]
 [ext_resource type="Theme" uid="uid://ba3ofuhdx02cr" path="res://Resources/Themes/main_theme.tres" id="15_gqwak"]
+[ext_resource type="Texture2D" uid="uid://d4bbfp6blyq54" path="res://Graphics/Talking/sprite_cane_talking_blush.png" id="15_y13qf"]
 [ext_resource type="Script" uid="uid://85pv8b7m5k0s" path="res://Scenes/Systems/upgrade_manager.gd" id="24_rar5s"]
 [ext_resource type="Script" uid="uid://cjjqrbvu6qkhv" path="res://Resources/Upgrades/upgrade_data.gd" id="26_cppk6"]
 [ext_resource type="Script" uid="uid://qa1djvfk32rq" path="res://Resources/Upgrades/attack_upgrade.gd" id="27_17vb1"]
@@ -32,6 +36,110 @@
 [ext_resource type="Script" uid="uid://d1lltcsjhjowv" path="res://Resources/Upgrades/speed_upgrade.gd" id="29_7d2jk"]
 [ext_resource type="Script" uid="uid://bwlmktm7xm282" path="res://Scripts/Objects/upgrade_button.gd" id="30_17vb1"]
 [ext_resource type="Script" uid="uid://udfwxfwafxty" path="res://Scripts/Systems/bat_cuscene_event.gd" id="31_kv0vm"]
+
+[sub_resource type="Resource" id="Resource_m78ch"]
+script = ExtResource("7_ht0kt")
+animation_name = "beginning"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
+[sub_resource type="Resource" id="Resource_h61fh"]
+script = ExtResource("7_ht0kt")
+animation_name = "cane_poof_enter"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
+[sub_resource type="Resource" id="Resource_053me"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Candy, let me come clean. When you got here I took..."
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_11nt7"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "..."
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_bhj4t"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Where did you get that?"
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_7ifkr"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Candy?"
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_kxnk1"]
+script = ExtResource("7_ht0kt")
+animation_name = "candy_get_closer"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
+[sub_resource type="Resource" id="Resource_ibw16"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Candy, you're getting too close..."
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_dejn0"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Candy, I'm feeling it again. Just like before..."
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_4q5q3"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "My heart racing..."
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_wbsfb"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Candy, this feeling. It must be!"
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_2gwb5"]
+script = ExtResource("7_ht0kt")
+animation_name = "final"
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
+[sub_resource type="Resource" id="Resource_t8jm3"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "It must be lo-"
+skippable = false
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_k8seg"]
+script = ExtResource("3_q2try")
+cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_m78ch"), SubResource("Resource_h61fh"), SubResource("Resource_053me"), SubResource("Resource_11nt7"), SubResource("Resource_bhj4t"), SubResource("Resource_7ifkr"), SubResource("Resource_kxnk1"), SubResource("Resource_ibw16"), SubResource("Resource_dejn0"), SubResource("Resource_4q5q3"), SubResource("Resource_wbsfb"), SubResource("Resource_2gwb5"), SubResource("Resource_t8jm3")])
+metadata/_custom_type_script = "uid://vd74rdt82yon"
 
 [sub_resource type="Resource" id="Resource_rfqhp"]
 script = ExtResource("7_ht0kt")
@@ -49,87 +157,67 @@ metadata/_custom_type_script = "uid://csb4hvs2xwugx"
 
 [sub_resource type="Resource" id="Resource_ahqd5"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
+speaker_img = ExtResource("9_2j1fn")
 text = "Oh wonderful! You're awake! I honestly didn't think that'd work"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_dw2ve"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
+speaker_img = ExtResource("10_y13qf")
 text = "Greetings, my name is Cane. "
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_2j1fn"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("10_y13qf")
 text = "You may recognize my face but we've never been able to talk haven't we?"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_y13qf"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("10_y13qf")
 text = "I've wanted to know for quite a while now but, what is your name?"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_p2x0k"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("9_2j1fn")
 text = "... Candy? What a lovely name!"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_b2sh1"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("10_y13qf")
 text = "I know you must be confused, but simply know that all I seek is to help you."
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_bpyde"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("11_p2x0k")
 text = "I know you are struggling right now..."
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_1qpl0"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("9_2j1fn")
 text = "So I hope to take some of the burden of your shoulders by providing a way for you to have fun!"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_t61ei"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Candy! This arena was constructed just for you, a simple place where you can have fun with everyone."
+speaker_img = ExtResource("10_y13qf")
+text = "Candy! This arena was constructed just for you, a simple place where you can have fun."
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_wmjq7"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("10_y13qf")
 text = "So, won't you play? "
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_2m0yh"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("9_2j1fn")
 text = "... Excellent! Now, let's begin!"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
@@ -784,97 +872,6 @@ script = ExtResource("3_q2try")
 cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_0k771"), SubResource("Resource_qu0oq"), SubResource("Resource_w6oud"), SubResource("Resource_nlafj"), SubResource("Resource_iihyg"), SubResource("Resource_uoy0s"), SubResource("Resource_47a14"), SubResource("Resource_43ckj"), SubResource("Resource_i0d0y")])
 metadata/_custom_type_script = "uid://vd74rdt82yon"
 
-[sub_resource type="Resource" id="Resource_m78ch"]
-script = ExtResource("7_ht0kt")
-animation_name = "beginning"
-hide_dialogue_box = true
-wait_for_animation_finished = true
-metadata/_custom_type_script = "uid://csb4hvs2xwugx"
-
-[sub_resource type="Resource" id="Resource_h61fh"]
-script = ExtResource("7_ht0kt")
-animation_name = "cane_poof_enter"
-hide_dialogue_box = true
-wait_for_animation_finished = true
-metadata/_custom_type_script = "uid://csb4hvs2xwugx"
-
-[sub_resource type="Resource" id="Resource_053me"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Candy, let me come clean. When you got here I took..."
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_11nt7"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "..."
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_bhj4t"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Where did you get that?"
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_7ifkr"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Candy?"
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_ibw16"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Candy, you're getting too close..."
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_dejn0"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Candy, I'm feeling it again. Just like before..."
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_4q5q3"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "My heart racing..."
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_wbsfb"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Candy, this feeling. It must be!"
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_t8jm3"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "It must be lo-"
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_k8seg"]
-script = ExtResource("3_q2try")
-cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_m78ch"), SubResource("Resource_h61fh"), SubResource("Resource_053me"), SubResource("Resource_11nt7"), SubResource("Resource_bhj4t"), SubResource("Resource_7ifkr"), SubResource("Resource_ibw16"), SubResource("Resource_dejn0"), SubResource("Resource_4q5q3"), SubResource("Resource_wbsfb"), SubResource("Resource_t8jm3")])
-metadata/_custom_type_script = "uid://vd74rdt82yon"
-
 [sub_resource type="Animation" id="Animation_l1e6r"]
 length = 0.001
 tracks/0/type = "value"
@@ -901,6 +898,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Player:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 120)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CaneSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 120)]
+}
 
 [sub_resource type="Animation" id="Animation_cppk6"]
 resource_name = "beginning"
@@ -915,6 +936,52 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_b2sh1"]
+resource_name = "candy_get_closer"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(128, 120), Vector2(184, 120)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CaneSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(192, 120), Vector2(208, 120)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["run", true],
+"method": &"play_animation"
+}, {
+"args": ["idle", true],
+"method": &"play_animation"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_17vb1"]
@@ -1012,12 +1079,33 @@ tracks/2/keys = {
 }
 tracks/2/use_blend = true
 
+[sub_resource type="Animation" id="Animation_p2x0k"]
+resource_name = "final"
+length = 0.8
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_game"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kv0vm"]
 _data = {
 &"RESET": SubResource("Animation_l1e6r"),
 &"beginning": SubResource("Animation_cppk6"),
+&"candy_get_closer": SubResource("Animation_b2sh1"),
 &"cane_poof_enter": SubResource("Animation_17vb1"),
-&"cane_poof_exit": SubResource("Animation_ht0kt")
+&"cane_poof_exit": SubResource("Animation_ht0kt"),
+&"final": SubResource("Animation_p2x0k")
 }
 
 [sub_resource type="Curve" id="Curve_i0w65"]
@@ -1145,6 +1233,7 @@ metadata/_custom_type_script = "uid://d1lltcsjhjowv"
 [node name="Game" type="Node2D" unique_id=794865982]
 y_sort_enabled = true
 script = ExtResource("1_yla1s")
+delay_between_cutscenes = null
 
 [node name="Player" parent="." unique_id=451226399 groups=["player"] instance=ExtResource("1_ds3o4")]
 position = Vector2(128, 120)
@@ -1155,7 +1244,7 @@ script = ExtResource("3_7l4mf")
 
 [node name="CutsceneManager" type="Node2D" parent="." unique_id=741662303]
 script = ExtResource("1_72uep")
-cutscenes = Array[ExtResource("3_q2try")]([SubResource("Resource_8u2a7"), SubResource("Resource_gqwak"), SubResource("Resource_quh40"), SubResource("Resource_a4aho"), SubResource("Resource_0yyd6"), SubResource("Resource_l5olg"), SubResource("Resource_dob3i"), SubResource("Resource_o8u4u"), SubResource("Resource_tkk3r"), SubResource("Resource_gjmp0"), SubResource("Resource_k8seg")])
+cutscenes = Array[ExtResource("3_q2try")]([SubResource("Resource_k8seg"), SubResource("Resource_8u2a7"), SubResource("Resource_gqwak"), SubResource("Resource_quh40"), SubResource("Resource_a4aho"), SubResource("Resource_0yyd6"), SubResource("Resource_l5olg"), SubResource("Resource_dob3i"), SubResource("Resource_o8u4u"), SubResource("Resource_tkk3r"), SubResource("Resource_gjmp0")])
 
 [node name="SoundEffectPlayer" type="AudioStreamPlayer" parent="CutsceneManager" unique_id=269904706]
 max_polyphony = 5
@@ -1183,7 +1272,6 @@ process_material = SubResource("ParticleProcessMaterial_y13qf")
 [node name="CutsceneDelayTimer" type="Timer" parent="CutsceneManager" unique_id=1107802549]
 
 [node name="Dialogue" type="TextureRect" parent="CutsceneManager" unique_id=250755429]
-visible = false
 z_index = 1000
 offset_top = 112.0
 offset_right = 320.0
@@ -1191,6 +1279,7 @@ offset_bottom = 180.0
 texture = ExtResource("8_dw2ve")
 
 [node name="Speaker" type="Control" parent="CutsceneManager/Dialogue" unique_id=129228589]
+z_index = -1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1205,9 +1294,8 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="SpeakerSprite" type="Sprite2D" parent="CutsceneManager/Dialogue/Speaker" unique_id=219369283]
-position = Vector2(28, 16)
-texture = ExtResource("8_t7urq")
-hframes = 2
+texture = ExtResource("15_y13qf")
+offset = Vector2(40, 0)
 
 [node name="Margins" type="MarginContainer" parent="CutsceneManager/Dialogue" unique_id=1077631019]
 layout_mode = 0

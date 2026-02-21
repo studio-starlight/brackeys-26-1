@@ -11,3 +11,5 @@ extends CutsceneData
 @export var text_volume_db: int
 @export var text_volume_pitch_min: float = 0.85
 @export var text_volume_pitch_max: float = 1.15
+
+@export var skippable : bool = true
