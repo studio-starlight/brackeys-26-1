@@ -23,8 +23,11 @@ enum GameState {
 }
 var current_game_state : GameState
 
+var collected_upgrades : Array[UpgradeData]
+
 func reset_story() -> void:
 	current_story_event = StoryEvent.START
+	collected_upgrades.clear()
 
 func advance_story_event() -> void:
 	if current_story_event < StoryEvent.ENDING:

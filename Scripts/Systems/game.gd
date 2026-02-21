@@ -17,6 +17,7 @@ func _ready() -> void:
 	EventBus.connect("wave_end", _on_wave_end)
 	EventBus.connect("cutscene_start", _start_cutscene)
 	EventBus.connect("cutscene_end", _on_cutscene_end)
+	EventBus.connect("upgrade_selected", _on_selected_upgrade)
 	EventBus.connect("slow_time", _on_slow_time)
 	Engine.time_scale = 1.0
 	hud.visible = false
@@ -50,6 +51,13 @@ func _on_cutscene_end() -> void:
 	EventBus.emit_signal("wave_start")
 
 func _on_wave_end() -> void:
+	player.disabled = true
+	hud.visible = false
+	upgrade_manager.visible = true
+	upgrade_manager.setup_upgrades()
+
+func _on_selected_upgrade(upgrade_data : UpgradeData) -> void:
+	upgrade_manager.visible = false
 	EventBus.emit_signal("cutscene_start")
 
 func _on_slow_time(slow_time : float, duration : float) -> void:

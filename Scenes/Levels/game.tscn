@@ -505,6 +505,7 @@ visible = false
 polygon = PackedVector2Array(32, 64, 16, 80, 16, 160, 32, 176, 288, 176, 304, 160, 304, 80, 288, 64, 32, 64, 32, 32, 288, 32, 312, 56, 312, 168, 288, 192, 32, 192, 8, 176, 8, 56, 32, 32)
 
 [node name="UpgradeManager" type="Node2D" parent="." unique_id=1803625167]
+visible = false
 script = ExtResource("24_rar5s")
 upgrades = Array[ExtResource("26_cppk6")]([SubResource("Resource_17vb1"), SubResource("Resource_kv0vm"), SubResource("Resource_7d2jk")])
 
@@ -519,6 +520,7 @@ grow_horizontal = 2
 pivot_offset_ratio = Vector2(0.5, 0)
 size_flags_horizontal = 4
 size_flags_vertical = 0
+mouse_filter = 2
 alignment = 1
 
 [node name="Upgrade1" type="Panel" parent="UpgradeManager/Upgrades" unique_id=1723768740]
