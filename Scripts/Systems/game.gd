@@ -31,10 +31,12 @@ func _ready() -> void:
 		EventBus.emit_signal("wave_start")
 
 func _start_wave() -> void:
-	if GameManager.get_story_event() < GameManager.StoryEvent.WAVE7:
+	if GameManager.get_story_event() < GameManager.StoryEvent.WAVE8:
 		MusicManager.play_music(MusicManager.MUSIC_BATTLE)
+	elif GameManager.get_story_event() < GameManager.StoryEvent.WAVE9:
+		MusicManager.play_music(MusicManager.MUSIC_BATTLE, 0.50)
 	else:
-		MusicManager.play_music(MusicManager.MUSIC_BATTLE, 0.75)
+		MusicManager.play_music(MusicManager.MUSIC_BATTLE,0.25)
 	wave_manager.start_wave(GameManager.current_story_event)
 	hud.set_max_hearts(player.stats.max_health)
 	player.stats.health = player.stats.max_health

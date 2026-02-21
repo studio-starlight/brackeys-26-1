@@ -37,110 +37,6 @@
 [ext_resource type="Script" uid="uid://bwlmktm7xm282" path="res://Scripts/Objects/upgrade_button.gd" id="30_17vb1"]
 [ext_resource type="Script" uid="uid://udfwxfwafxty" path="res://Scripts/Systems/bat_cuscene_event.gd" id="31_kv0vm"]
 
-[sub_resource type="Resource" id="Resource_m78ch"]
-script = ExtResource("7_ht0kt")
-animation_name = "beginning"
-hide_dialogue_box = true
-wait_for_animation_finished = true
-metadata/_custom_type_script = "uid://csb4hvs2xwugx"
-
-[sub_resource type="Resource" id="Resource_h61fh"]
-script = ExtResource("7_ht0kt")
-animation_name = "cane_poof_enter"
-hide_dialogue_box = true
-wait_for_animation_finished = true
-metadata/_custom_type_script = "uid://csb4hvs2xwugx"
-
-[sub_resource type="Resource" id="Resource_053me"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Candy, let me come clean. When you got here I took..."
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_11nt7"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "..."
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_bhj4t"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Where did you get that?"
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_7ifkr"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Candy?"
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_kxnk1"]
-script = ExtResource("7_ht0kt")
-animation_name = "candy_get_closer"
-hide_dialogue_box = true
-wait_for_animation_finished = true
-metadata/_custom_type_script = "uid://csb4hvs2xwugx"
-
-[sub_resource type="Resource" id="Resource_ibw16"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Candy, you're getting too close..."
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_dejn0"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Candy, I'm feeling it again. Just like before..."
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_4q5q3"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "My heart racing..."
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_wbsfb"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "Candy, this feeling. It must be!"
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_2gwb5"]
-script = ExtResource("7_ht0kt")
-animation_name = "final"
-metadata/_custom_type_script = "uid://csb4hvs2xwugx"
-
-[sub_resource type="Resource" id="Resource_t8jm3"]
-script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
-text = "It must be lo-"
-skippable = false
-metadata/_custom_type_script = "uid://dg44yqyt36m2x"
-
-[sub_resource type="Resource" id="Resource_k8seg"]
-script = ExtResource("3_q2try")
-cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_m78ch"), SubResource("Resource_h61fh"), SubResource("Resource_053me"), SubResource("Resource_11nt7"), SubResource("Resource_bhj4t"), SubResource("Resource_7ifkr"), SubResource("Resource_kxnk1"), SubResource("Resource_ibw16"), SubResource("Resource_dejn0"), SubResource("Resource_4q5q3"), SubResource("Resource_wbsfb"), SubResource("Resource_2gwb5"), SubResource("Resource_t8jm3")])
-metadata/_custom_type_script = "uid://vd74rdt82yon"
-
 [sub_resource type="Resource" id="Resource_rfqhp"]
 script = ExtResource("7_ht0kt")
 animation_name = "beginning"
@@ -315,57 +211,43 @@ metadata/_custom_type_script = "uid://csb4hvs2xwugx"
 
 [sub_resource type="Resource" id="Resource_07xg1"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("11_p2x0k")
 text = "My Dear Candy, I do hope this is fun for you."
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_aatd7"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("11_p2x0k")
 text = "To be quite honest, I am a bit too delicate to participate myself."
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_omdyk"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("9_2j1fn")
 text = "That and I don't really find this sort of thing fun, but don't worry!"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_q1sma"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("10_y13qf")
 text = "All who are here today were willful volunteers!"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_tj3wl"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("11_p2x0k")
 text = "What's that? What Happens when they poof?"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_oatcm"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("11_p2x0k")
 text = "You've never poofed before, Candy?"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
 [sub_resource type="Resource" id="Resource_5p0b8"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("9_2j1fn")
 text = "How strange the world you come from is!"
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
@@ -397,9 +279,7 @@ metadata/_custom_type_script = "uid://csb4hvs2xwugx"
 
 [sub_resource type="Resource" id="Resource_it6ed"]
 script = ExtResource("7_xdwyp")
-speaker_img = ExtResource("8_t7urq")
-speaker_img_Hframes = 2
-speaker_img_rest_frame = 1
+speaker_img = ExtResource("10_y13qf")
 text = "I feel the need to explain a few things."
 metadata/_custom_type_script = "uid://dg44yqyt36m2x"
 
@@ -872,6 +752,110 @@ script = ExtResource("3_q2try")
 cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_0k771"), SubResource("Resource_qu0oq"), SubResource("Resource_w6oud"), SubResource("Resource_nlafj"), SubResource("Resource_iihyg"), SubResource("Resource_uoy0s"), SubResource("Resource_47a14"), SubResource("Resource_43ckj"), SubResource("Resource_i0d0y")])
 metadata/_custom_type_script = "uid://vd74rdt82yon"
 
+[sub_resource type="Resource" id="Resource_m78ch"]
+script = ExtResource("7_ht0kt")
+animation_name = "beginning"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
+[sub_resource type="Resource" id="Resource_h61fh"]
+script = ExtResource("7_ht0kt")
+animation_name = "cane_poof_enter"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
+[sub_resource type="Resource" id="Resource_053me"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Candy, let me come clean. When you got here I took..."
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_11nt7"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "..."
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_bhj4t"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Where did you get that?"
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_7ifkr"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Candy?"
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_kxnk1"]
+script = ExtResource("7_ht0kt")
+animation_name = "candy_get_closer"
+hide_dialogue_box = true
+wait_for_animation_finished = true
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
+[sub_resource type="Resource" id="Resource_ibw16"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Candy, you're getting too close..."
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_dejn0"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Candy, I'm feeling it again. Just like before..."
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_4q5q3"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "My heart racing..."
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_wbsfb"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "Candy, this feeling. It must be!"
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_2gwb5"]
+script = ExtResource("7_ht0kt")
+animation_name = "final"
+metadata/_custom_type_script = "uid://csb4hvs2xwugx"
+
+[sub_resource type="Resource" id="Resource_t8jm3"]
+script = ExtResource("7_xdwyp")
+speaker_img = ExtResource("8_t7urq")
+speaker_img_Hframes = 2
+speaker_img_rest_frame = 1
+text = "It must be lo-"
+skippable = false
+metadata/_custom_type_script = "uid://dg44yqyt36m2x"
+
+[sub_resource type="Resource" id="Resource_k8seg"]
+script = ExtResource("3_q2try")
+cutscene_data = Array[ExtResource("3_c11q5")]([SubResource("Resource_m78ch"), SubResource("Resource_h61fh"), SubResource("Resource_053me"), SubResource("Resource_11nt7"), SubResource("Resource_bhj4t"), SubResource("Resource_7ifkr"), SubResource("Resource_kxnk1"), SubResource("Resource_ibw16"), SubResource("Resource_dejn0"), SubResource("Resource_4q5q3"), SubResource("Resource_wbsfb"), SubResource("Resource_2gwb5"), SubResource("Resource_t8jm3")])
+metadata/_custom_type_script = "uid://vd74rdt82yon"
+
 [sub_resource type="Animation" id="Animation_l1e6r"]
 length = 0.001
 tracks/0/type = "value"
@@ -1139,27 +1123,27 @@ scale_curve = SubResource("CurveTexture_2j1fn")
 [sub_resource type="Resource" id="Resource_c11q5"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("5_ce5c8")])
-enemy_count = 2
-enemy_delay = 6.0
+enemy_count = 5
+enemy_delay = 4.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_3jpjc"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("5_ce5c8")])
-enemy_count = 2
-enemy_delay = 2.0
+enemy_count = 10
+enemy_delay = 3.5
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_gxqav"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("5_ce5c8"), ExtResource("14_x1q52")])
-enemy_count = 2
-enemy_delay = 4.0
+enemy_count = 15
+enemy_delay = 1.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_d7yfr"]
 script = ExtResource("4_o86a8")
-enemy_types = Array[PackedScene]([ExtResource("5_ce5c8"), ExtResource("14_x1q52")])
+enemy_types = Array[PackedScene]([ExtResource("5_ce5c8")])
 enemy_count = 2
 enemy_delay = 2.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
@@ -1167,43 +1151,43 @@ metadata/_custom_type_script = "uid://bnkkpuj71oley"
 [sub_resource type="Resource" id="Resource_iyrm3"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("5_ce5c8"), ExtResource("12_3jpjc")])
-enemy_count = 2
-enemy_delay = 3.5
+enemy_count = 10
+enemy_delay = 4.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_bmorh"]
 script = ExtResource("4_o86a8")
 enemy_types = Array[PackedScene]([ExtResource("12_3jpjc"), ExtResource("5_ce5c8")])
-enemy_count = 2
+enemy_count = 15
 enemy_delay = 2.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_igpio"]
 script = ExtResource("4_o86a8")
-enemy_types = Array[PackedScene]([ExtResource("5_ce5c8"), ExtResource("12_3jpjc"), ExtResource("14_x1q52")])
-enemy_count = 2
-enemy_delay = 1.0
+enemy_types = Array[PackedScene]([ExtResource("5_ce5c8"), ExtResource("12_3jpjc")])
+enemy_count = 10
+enemy_delay = 3.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_f0vdm"]
 script = ExtResource("4_o86a8")
-enemy_types = Array[PackedScene]([ExtResource("12_3jpjc")])
-enemy_count = 2
-enemy_delay = 1.0
+enemy_types = Array[PackedScene]([ExtResource("12_3jpjc"), ExtResource("14_x1q52")])
+enemy_count = 15
+enemy_delay = 2.6
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_iqsc7"]
 script = ExtResource("4_o86a8")
-enemy_types = Array[PackedScene]([ExtResource("14_x1q52")])
-enemy_count = 2
-enemy_delay = 1.0
+enemy_types = Array[PackedScene]([ExtResource("14_x1q52"), ExtResource("14_x1q52"), ExtResource("5_ce5c8"), ExtResource("12_3jpjc")])
+enemy_count = 20
+enemy_delay = 2.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Resource" id="Resource_w2ya6"]
 script = ExtResource("4_o86a8")
-enemy_types = Array[PackedScene]([ExtResource("12_3jpjc")])
-enemy_count = 2
-enemy_delay = 1.0
+enemy_types = Array[PackedScene]([ExtResource("12_3jpjc"), ExtResource("5_ce5c8"), ExtResource("14_x1q52")])
+enemy_count = 30
+enemy_delay = 2.0
 metadata/_custom_type_script = "uid://bnkkpuj71oley"
 
 [sub_resource type="Curve2D" id="Curve2D_7l4mf"]
@@ -1233,7 +1217,6 @@ metadata/_custom_type_script = "uid://d1lltcsjhjowv"
 [node name="Game" type="Node2D" unique_id=794865982]
 y_sort_enabled = true
 script = ExtResource("1_yla1s")
-delay_between_cutscenes = null
 
 [node name="Player" parent="." unique_id=451226399 groups=["player"] instance=ExtResource("1_ds3o4")]
 position = Vector2(128, 120)
@@ -1244,7 +1227,7 @@ script = ExtResource("3_7l4mf")
 
 [node name="CutsceneManager" type="Node2D" parent="." unique_id=741662303]
 script = ExtResource("1_72uep")
-cutscenes = Array[ExtResource("3_q2try")]([SubResource("Resource_k8seg"), SubResource("Resource_8u2a7"), SubResource("Resource_gqwak"), SubResource("Resource_quh40"), SubResource("Resource_a4aho"), SubResource("Resource_0yyd6"), SubResource("Resource_l5olg"), SubResource("Resource_dob3i"), SubResource("Resource_o8u4u"), SubResource("Resource_tkk3r"), SubResource("Resource_gjmp0")])
+cutscenes = Array[ExtResource("3_q2try")]([SubResource("Resource_8u2a7"), SubResource("Resource_gqwak"), SubResource("Resource_quh40"), SubResource("Resource_a4aho"), SubResource("Resource_0yyd6"), SubResource("Resource_l5olg"), SubResource("Resource_dob3i"), SubResource("Resource_o8u4u"), SubResource("Resource_tkk3r"), SubResource("Resource_gjmp0"), SubResource("Resource_k8seg")])
 
 [node name="SoundEffectPlayer" type="AudioStreamPlayer" parent="CutsceneManager" unique_id=269904706]
 max_polyphony = 5
