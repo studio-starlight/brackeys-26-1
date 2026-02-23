@@ -239,6 +239,21 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_0b04c"]
+resource_name = "swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jvxap"]
 _data = {
 &"RESET": SubResource("Animation_xbekk"),
@@ -246,7 +261,8 @@ _data = {
 &"death": SubResource("Animation_jvxap"),
 &"hit": SubResource("Animation_h6i5h"),
 &"idle": SubResource("Animation_y42te"),
-&"run": SubResource("Animation_2i876")
+&"run": SubResource("Animation_2i876"),
+&"swing": SubResource("Animation_0b04c")
 }
 
 [sub_resource type="Animation" id="Animation_picsy"]

@@ -47,6 +47,7 @@ func _start_cutscene() -> void:
 	hud.visible = false
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(player, "global_position", player_cutsene_marker.global_position, 1.0)
+	player.disabled = true
 	player.play_animation("idle", true)
 	cutscene_manager.start_cutscene(GameManager.current_story_event)
 

@@ -3,6 +3,7 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	MusicManager.stop_music()
 	animation_player.animation_finished.connect(_on_ending_finished)
 
 func _on_ending_finished(animation_name : String) -> void:
